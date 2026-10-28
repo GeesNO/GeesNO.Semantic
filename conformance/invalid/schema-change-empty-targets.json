@@ -1,0 +1,26 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000041a",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "revision": {
+    "id": "urn:uuid:00000000-0000-4000-8000-00000000041b"
+  },
+  "history": {
+    "completeness": "partial",
+    "changes": [
+      {
+        "revision": {
+          "target": "urn:uuid:00000000-0000-4000-8000-00000000041b",
+          "location": "in-document"
+        },
+        "targets": [],
+        "kind": "ex:change"
+      }
+    ]
+  }
+}

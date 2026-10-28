@@ -1,0 +1,17 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000001a4",
+  "scope": {
+    "completeness": "partial"
+  },
+  "tombstones": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000001a5",
+      "target": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000001a6",
+        "location": "out-of-document"
+      },
+      "target_category": "entity"
+    }
+  ]
+}

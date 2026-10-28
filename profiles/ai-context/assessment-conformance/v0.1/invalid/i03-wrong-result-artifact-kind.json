@@ -1,0 +1,26 @@
+{
+  "binding": {
+    "family": "https://geesno.com/binding/ai-context-assessment-json",
+    "version": "0.1.0"
+  },
+  "artifact_kind": "projection_artifact",
+  "profile_edition": {
+    "profile_family": "https://geesno.com/profile/ai-context",
+    "profile_version": "0.1.0"
+  },
+  "assessment_subject": {
+    "subject_role": "projection_artifact",
+    "reference_strategy": "stable_artifact_identity",
+    "artifact_id": "https://example.invalid/projections/one"
+  },
+  "overall_outcome": "conformant",
+  "requirement_results": [
+    {
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "outcome": "satisfied"
+    }
+  ]
+}

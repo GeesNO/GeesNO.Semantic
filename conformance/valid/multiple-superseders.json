@@ -1,0 +1,60 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000001b8",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000001b9",
+      "kind": "concept"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000001ba",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000001b9",
+        "location": "in-document"
+      },
+      "property": "ex:name",
+      "value": "prior"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000001bb",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000001b9",
+        "location": "in-document"
+      },
+      "property": "ex:name",
+      "value": "replacement-a",
+      "supersedes": [
+        {
+          "target": "urn:uuid:00000000-0000-4000-8000-0000000001ba",
+          "location": "in-document"
+        }
+      ]
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000001bc",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000001b9",
+        "location": "in-document"
+      },
+      "property": "ex:name",
+      "value": "replacement-b",
+      "supersedes": [
+        {
+          "target": "urn:uuid:00000000-0000-4000-8000-0000000001ba",
+          "location": "in-document"
+        }
+      ]
+    }
+  ]
+}

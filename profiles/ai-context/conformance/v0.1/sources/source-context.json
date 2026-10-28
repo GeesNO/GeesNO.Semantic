@@ -1,0 +1,133 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000a000",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "test": "https://example.invalid/terms/",
+    "ext": "https://example.invalid/extensions/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+      "kind": "concept",
+      "provenance": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000a111",
+          "kind": "test:authored",
+          "details": "synthetic source"
+        }
+      ],
+      "confidence": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000a112",
+          "score": {
+            "kind": "decimal",
+            "coefficient": "9",
+            "exponent": "-1"
+          },
+          "method": "test:deterministic"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000a113",
+          "disposition": "test:accepted"
+        }
+      ],
+      "validity": {
+        "kind": "test:interval",
+        "from": {
+          "kind": "date",
+          "value": "2026-09-29"
+        }
+      },
+      "extensions": {
+        "ext:opaque": {
+          "token": "alpha",
+          "nested": [1, true]
+        }
+      }
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a102",
+      "kind": "representation"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a103",
+      "kind": "concept"
+    }
+  ],
+  "sources": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a201",
+      "locations": [
+        {
+          "kind": "test:resource",
+          "value": "synthetic-origin"
+        }
+      ],
+      "revision": {
+        "kind": "test:edition",
+        "value": "r1"
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a301",
+      "entity": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000a102",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000a201",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "test:locator",
+        "value": "urn:fixture:locator-alpha"
+      },
+      "method": "test:correlated"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a401",
+      "kind": "relation",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+        "location": "in-document"
+      },
+      "predicate": "test:related",
+      "object": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000a102",
+        "location": "in-document"
+      }
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a402",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+        "location": "in-document"
+      },
+      "property": "test:label",
+      "value": "alpha"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a404",
+      "kind": "relation",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+        "location": "in-document"
+      },
+      "predicate": "test:depends-on",
+      "object": {
+        "target": "urn:fixture:external-context",
+        "location": "out-of-document"
+      }
+    }
+  ]
+}

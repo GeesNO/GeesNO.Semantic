@@ -1,0 +1,988 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeesNO.Semantic AI Context Assessment JSON Binding 0.1",
+  "description": "Normative structural schema for ai-context-assessment-json/0.1.0 conformance result artifacts. Semantic reference resolution and outcome assessment remain governed by the normative specification.",
+  "x-geesno-status": "s5-i2-implemented",
+  "$ref": "#/$defs/conformanceResultArtifact",
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "exactOpaqueVersion": {
+      "allOf": [
+        {"$ref": "#/$defs/nonEmptyString"},
+        {"not": {"const": "latest"}}
+      ]
+    },
+    "absoluteIri": {
+      "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/identifier"
+    },
+    "profileDefinedContextValue": {
+      "not": {"type": "null"}
+    },
+    "canonicalUtcDateTime": {
+      "type": "string",
+      "description": "S2 Layer 2 canonical UTC lexical pattern. Gregorian calendar validity is checked by the same deterministic S2 Layer 3 temporal validation used after schema validation.",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](?:\\.[0-9]*[1-9])?Z$"
+    },
+    "bindingHeader": {
+      "type": "object",
+      "required": ["family", "version"],
+      "properties": {
+        "family": {
+          "const": "https://geesno.com/binding/ai-context-assessment-json"
+        },
+        "version": {"const": "0.1.0"}
+      },
+      "additionalProperties": false
+    },
+    "profileEdition": {
+      "type": "object",
+      "required": ["profile_family", "profile_version"],
+      "properties": {
+        "profile_family": {
+          "const": "https://geesno.com/profile/ai-context"
+        },
+        "profile_version": {"$ref": "#/$defs/exactOpaqueVersion"}
+      },
+      "additionalProperties": false
+    },
+    "localReference": {
+      "type": "object",
+      "required": ["scope_ref", "local_ref"],
+      "properties": {
+        "scope_ref": {"$ref": "#/$defs/nonEmptyString"},
+        "local_ref": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "additionalProperties": false
+    },
+    "referenceScope": {
+      "type": "object",
+      "required": ["scope_ref", "scope_kind"],
+      "properties": {
+        "scope_ref": {"$ref": "#/$defs/nonEmptyString"},
+        "scope_kind": {
+          "enum": [
+            "result_artifact_scope",
+            "assessment_package_scope",
+            "explicit_coupling_scope"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "assessmentSubject": {
+      "type": "object",
+      "required": ["subject_role", "reference_strategy"],
+      "properties": {
+        "subject_role": {
+          "enum": [
+            "profile_requirement_artifact",
+            "projection_artifact",
+            "semantic_document"
+          ]
+        },
+        "reference_strategy": {
+          "enum": [
+            "stable_artifact_identity",
+            "assessment_local_artifact_reference",
+            "coupled_subject"
+          ]
+        },
+        "artifact_id": {"$ref": "#/$defs/absoluteIri"},
+        "local_reference": {"$ref": "#/$defs/localReference"},
+        "coupled_occurrence_ref": {"$ref": "#/$defs/localReference"}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "reference_strategy": {"const": "stable_artifact_identity"}
+          },
+          "required": ["artifact_id"],
+          "not": {
+            "anyOf": [
+              {"required": ["local_reference"]},
+              {"required": ["coupled_occurrence_ref"]}
+            ]
+          }
+        },
+        {
+          "properties": {
+            "reference_strategy": {
+              "const": "assessment_local_artifact_reference"
+            }
+          },
+          "required": ["local_reference"],
+          "not": {
+            "anyOf": [
+              {"required": ["artifact_id"]},
+              {"required": ["coupled_occurrence_ref"]}
+            ]
+          }
+        },
+        {
+          "properties": {
+            "reference_strategy": {"const": "coupled_subject"}
+          },
+          "required": ["coupled_occurrence_ref"],
+          "not": {
+            "anyOf": [
+              {"required": ["artifact_id"]},
+              {"required": ["local_reference"]}
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "profileRequirementArtifactReference": {
+      "type": "object",
+      "required": ["reference_strategy"],
+      "properties": {
+        "reference_strategy": {
+          "enum": [
+            "stable_artifact_identity",
+            "assessment_local_artifact_reference",
+            "coupled_profile_requirement_artifact"
+          ]
+        },
+        "artifact_id": {"$ref": "#/$defs/absoluteIri"},
+        "local_reference": {"$ref": "#/$defs/localReference"},
+        "coupled_occurrence_ref": {"$ref": "#/$defs/localReference"}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "reference_strategy": {"const": "stable_artifact_identity"}
+          },
+          "required": ["artifact_id"],
+          "not": {
+            "anyOf": [
+              {"required": ["local_reference"]},
+              {"required": ["coupled_occurrence_ref"]}
+            ]
+          }
+        },
+        {
+          "properties": {
+            "reference_strategy": {
+              "const": "assessment_local_artifact_reference"
+            }
+          },
+          "required": ["local_reference"],
+          "not": {
+            "anyOf": [
+              {"required": ["artifact_id"]},
+              {"required": ["coupled_occurrence_ref"]}
+            ]
+          }
+        },
+        {
+          "properties": {
+            "reference_strategy": {
+              "const": "coupled_profile_requirement_artifact"
+            }
+          },
+          "required": ["coupled_occurrence_ref"],
+          "not": {
+            "anyOf": [
+              {"required": ["artifact_id"]},
+              {"required": ["local_reference"]}
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "contextEntry": {
+      "type": "object",
+      "required": ["context_key", "context_value"],
+      "properties": {
+        "context_key": {"$ref": "#/$defs/nonEmptyString"},
+        "context_value": {"$ref": "#/$defs/profileDefinedContextValue"}
+      },
+      "additionalProperties": false
+    },
+    "assessmentContext": {
+      "type": "object",
+      "required": ["context_entries"],
+      "properties": {
+        "context_entries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/contextEntry"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "requirementReference": {
+      "type": "object",
+      "required": ["reference_strategy"],
+      "properties": {
+        "reference_strategy": {
+          "enum": [
+            "stable_requirement_reference",
+            "locator_occurrence_reference"
+          ]
+        },
+        "requirement_id": {"$ref": "#/$defs/nonEmptyString"},
+        "requirement_locator": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "reference_strategy": {"const": "stable_requirement_reference"}
+          },
+          "required": ["requirement_id"],
+          "not": {"required": ["requirement_locator"]}
+        },
+        {
+          "properties": {
+            "reference_strategy": {"const": "locator_occurrence_reference"}
+          },
+          "required": ["requirement_locator"],
+          "not": {"required": ["requirement_id"]}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "requirementResult": {
+      "type": "object",
+      "required": ["requirement_ref", "outcome"],
+      "properties": {
+        "requirement_ref": {"$ref": "#/$defs/requirementReference"},
+        "outcome": {
+          "enum": [
+            "satisfied",
+            "violated",
+            "not_applicable",
+            "unsupported",
+            "unavailable"
+          ]
+        },
+        "diagnostic_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/localReference"}
+        },
+        "requirement_result_ref": {"$ref": "#/$defs/localReference"}
+      },
+      "additionalProperties": false
+    },
+    "subjectReference": {
+      "type": "object",
+      "required": ["reference_strategy"],
+      "properties": {
+        "reference_strategy": {
+          "enum": [
+            "stable_artifact_identity",
+            "assessment_local_artifact_reference"
+          ]
+        },
+        "artifact_id": {"$ref": "#/$defs/absoluteIri"},
+        "local_reference": {"$ref": "#/$defs/localReference"}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "reference_strategy": {"const": "stable_artifact_identity"}
+          },
+          "required": ["artifact_id"],
+          "not": {"required": ["local_reference"]}
+        },
+        {
+          "properties": {
+            "reference_strategy": {
+              "const": "assessment_local_artifact_reference"
+            }
+          },
+          "required": ["local_reference"],
+          "not": {"required": ["artifact_id"]}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "relatedReference": {
+      "type": "object",
+      "required": ["related_ref_kind"],
+      "properties": {
+        "related_ref_kind": {
+          "enum": [
+            "assessment_record",
+            "subject",
+            "requirement",
+            "requirement_result",
+            "diagnostic"
+          ]
+        },
+        "local_reference": {"$ref": "#/$defs/localReference"},
+        "subject_ref": {"$ref": "#/$defs/subjectReference"},
+        "requirement_ref": {"$ref": "#/$defs/requirementReference"},
+        "requirement_result_ref": {"$ref": "#/$defs/localReference"},
+        "diagnostic_ref": {"$ref": "#/$defs/localReference"}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "related_ref_kind": {"const": "assessment_record"}
+          },
+          "required": ["local_reference"],
+          "not": {
+            "anyOf": [
+              {"required": ["subject_ref"]},
+              {"required": ["requirement_ref"]},
+              {"required": ["requirement_result_ref"]},
+              {"required": ["diagnostic_ref"]}
+            ]
+          }
+        },
+        {
+          "properties": {"related_ref_kind": {"const": "subject"}},
+          "required": ["subject_ref"],
+          "not": {
+            "anyOf": [
+              {"required": ["local_reference"]},
+              {"required": ["requirement_ref"]},
+              {"required": ["requirement_result_ref"]},
+              {"required": ["diagnostic_ref"]}
+            ]
+          }
+        },
+        {
+          "properties": {"related_ref_kind": {"const": "requirement"}},
+          "required": ["requirement_ref"],
+          "not": {
+            "anyOf": [
+              {"required": ["local_reference"]},
+              {"required": ["subject_ref"]},
+              {"required": ["requirement_result_ref"]},
+              {"required": ["diagnostic_ref"]}
+            ]
+          }
+        },
+        {
+          "properties": {
+            "related_ref_kind": {"const": "requirement_result"}
+          },
+          "required": ["requirement_result_ref"],
+          "not": {
+            "anyOf": [
+              {"required": ["local_reference"]},
+              {"required": ["subject_ref"]},
+              {"required": ["requirement_ref"]},
+              {"required": ["diagnostic_ref"]}
+            ]
+          }
+        },
+        {
+          "properties": {"related_ref_kind": {"const": "diagnostic"}},
+          "required": ["diagnostic_ref"],
+          "not": {
+            "anyOf": [
+              {"required": ["local_reference"]},
+              {"required": ["subject_ref"]},
+              {"required": ["requirement_ref"]},
+              {"required": ["requirement_result_ref"]}
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "diagnostic": {
+      "type": "object",
+      "required": ["diagnostic_code", "diagnostic_category"],
+      "properties": {
+        "diagnostic_ref": {"$ref": "#/$defs/localReference"},
+        "diagnostic_code": {
+          "enum": [
+            "requirement_violated",
+            "requirement_unsupported",
+            "dependency_unavailable",
+            "requirement_not_applicable",
+            "invalid_binding_construct",
+            "unsupported_binding_construct",
+            "contradictory_projection_metadata",
+            "exact_vocabulary_unavailable",
+            "profile_requirement_artifact_unavailable",
+            "unresolved_requirement_reference",
+            "missing_namespace_expansion_context",
+            "invalid_reference_availability_consistency",
+            "invalid_source_state_reference_preservation",
+            "structural_validation_failed",
+            "assessment_input_uninterpretable"
+          ]
+        },
+        "diagnostic_category": {
+          "enum": [
+            "requirement_evaluation",
+            "dependency_availability",
+            "binding_structure",
+            "requirement_reference",
+            "assessment_input"
+          ]
+        },
+        "requirement_ref": {"$ref": "#/$defs/requirementReference"},
+        "requirement_result_ref": {"$ref": "#/$defs/localReference"},
+        "subject_ref": {"$ref": "#/$defs/subjectReference"},
+        "diagnostic_severity": {"enum": ["info", "warning", "error"]},
+        "message": {"$ref": "#/$defs/nonEmptyString"},
+        "locator": {"$ref": "#/$defs/nonEmptyString"},
+        "related_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/relatedReference"}
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "diagnostic_code": {"const": "requirement_violated"},
+            "diagnostic_category": {"const": "requirement_evaluation"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "requirement_unsupported"},
+            "diagnostic_category": {"const": "requirement_evaluation"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "dependency_unavailable"},
+            "diagnostic_category": {"const": "dependency_availability"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "requirement_not_applicable"},
+            "diagnostic_category": {"const": "requirement_evaluation"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "invalid_binding_construct"},
+            "diagnostic_category": {"const": "binding_structure"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "unsupported_binding_construct"},
+            "diagnostic_category": {"const": "binding_structure"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "contradictory_projection_metadata"},
+            "diagnostic_category": {"const": "binding_structure"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "exact_vocabulary_unavailable"},
+            "diagnostic_category": {"const": "dependency_availability"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {
+              "const": "profile_requirement_artifact_unavailable"
+            },
+            "diagnostic_category": {"const": "dependency_availability"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "unresolved_requirement_reference"},
+            "diagnostic_category": {"const": "requirement_reference"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {
+              "const": "missing_namespace_expansion_context"
+            },
+            "diagnostic_category": {"const": "binding_structure"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {
+              "const": "invalid_reference_availability_consistency"
+            },
+            "diagnostic_category": {"const": "binding_structure"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {
+              "const": "invalid_source_state_reference_preservation"
+            },
+            "diagnostic_category": {"const": "binding_structure"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "structural_validation_failed"},
+            "diagnostic_category": {"const": "binding_structure"}
+          }
+        },
+        {
+          "properties": {
+            "diagnostic_code": {"const": "assessment_input_uninterpretable"},
+            "diagnostic_category": {"const": "assessment_input"}
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "assessorMetadata": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "assessor_id": {"$ref": "#/$defs/absoluteIri"},
+        "implementation_name": {"$ref": "#/$defs/nonEmptyString"},
+        "implementation_version": {"$ref": "#/$defs/nonEmptyString"},
+        "assessment_timestamp": {"$ref": "#/$defs/canonicalUtcDateTime"}
+      },
+      "additionalProperties": false
+    },
+    "conformanceResultArtifact": {
+      "type": "object",
+      "required": [
+        "binding",
+        "artifact_kind",
+        "profile_edition",
+        "assessment_subject",
+        "overall_outcome",
+        "requirement_results"
+      ],
+      "properties": {
+        "binding": {"$ref": "#/$defs/bindingHeader"},
+        "artifact_kind": {"const": "conformance_result_artifact"},
+        "assessment_result_id": {"$ref": "#/$defs/absoluteIri"},
+        "profile_edition": {"$ref": "#/$defs/profileEdition"},
+        "profile_requirement_artifact_reference": {
+          "$ref": "#/$defs/profileRequirementArtifactReference"
+        },
+        "assessment_subject": {"$ref": "#/$defs/assessmentSubject"},
+        "assessment_context": {"$ref": "#/$defs/assessmentContext"},
+        "reference_scope": {"$ref": "#/$defs/referenceScope"},
+        "overall_outcome": {
+          "enum": ["conformant", "nonconformant", "indeterminate"]
+        },
+        "requirement_results": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/requirementResult"}
+        },
+        "diagnostics": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/diagnostic"}
+        },
+        "assessor_metadata": {"$ref": "#/$defs/assessorMetadata"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "requirement_results": {"maxItems": 0}
+            },
+            "required": ["requirement_results"]
+          },
+          "then": {"required": ["diagnostics"]}
+        },
+        {
+          "if": {
+            "properties": {
+              "assessment_subject": {
+                "properties": {
+                  "reference_strategy": {
+                    "enum": [
+                      "assessment_local_artifact_reference",
+                      "coupled_subject"
+                    ]
+                  }
+                },
+                "required": ["reference_strategy"]
+              }
+            },
+            "required": ["assessment_subject"]
+          },
+          "then": {"required": ["reference_scope"]}
+        },
+        {
+          "if": {
+            "properties": {
+              "profile_requirement_artifact_reference": {
+                "properties": {
+                  "reference_strategy": {
+                    "enum": [
+                      "assessment_local_artifact_reference",
+                      "coupled_profile_requirement_artifact"
+                    ]
+                  }
+                },
+                "required": ["reference_strategy"]
+              }
+            },
+            "required": ["profile_requirement_artifact_reference"]
+          },
+          "then": {"required": ["reference_scope"]}
+        },
+        {
+          "if": {
+            "properties": {
+              "requirement_results": {
+                "contains": {
+                  "anyOf": [
+                    {"required": ["diagnostic_refs"]},
+                    {"required": ["requirement_result_ref"]}
+                  ]
+                }
+              }
+            },
+            "required": ["requirement_results"]
+          },
+          "then": {"required": ["reference_scope"]}
+        },
+        {
+          "if": {
+            "properties": {
+              "diagnostics": {
+                "contains": {
+                  "anyOf": [
+                    {"required": ["diagnostic_ref"]},
+                    {"required": ["requirement_result_ref"]},
+                    {
+                      "properties": {
+                        "subject_ref": {
+                          "properties": {
+                            "reference_strategy": {
+                              "const": "assessment_local_artifact_reference"
+                            }
+                          },
+                          "required": ["reference_strategy"]
+                        }
+                      },
+                      "required": ["subject_ref"]
+                    },
+                    {
+                      "properties": {
+                        "related_refs": {
+                          "contains": {
+                            "anyOf": [
+                              {
+                                "properties": {
+                                  "related_ref_kind": {
+                                    "enum": [
+                                      "assessment_record",
+                                      "requirement_result",
+                                      "diagnostic"
+                                    ]
+                                  }
+                                },
+                                "required": ["related_ref_kind"]
+                              },
+                              {
+                                "properties": {
+                                  "related_ref_kind": {"const": "subject"},
+                                  "subject_ref": {
+                                    "properties": {
+                                      "reference_strategy": {
+                                        "const": "assessment_local_artifact_reference"
+                                      }
+                                    },
+                                    "required": ["reference_strategy"]
+                                  }
+                                },
+                                "required": ["related_ref_kind", "subject_ref"]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "required": ["related_refs"]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": ["diagnostics"]
+          },
+          "then": {"required": ["reference_scope"]}
+        },
+        {
+          "if": {
+            "properties": {
+              "diagnostics": {
+                "contains": {
+                  "anyOf": [
+                    {
+                      "properties": {
+                        "subject_ref": {
+                          "properties": {
+                            "reference_strategy": {
+                              "const": "assessment_local_artifact_reference"
+                            }
+                          },
+                          "required": ["reference_strategy"]
+                        }
+                      },
+                      "required": ["subject_ref"]
+                    },
+                    {
+                      "properties": {
+                        "related_refs": {
+                          "contains": {
+                            "properties": {
+                              "related_ref_kind": {"const": "subject"},
+                              "subject_ref": {
+                                "properties": {
+                                  "reference_strategy": {
+                                    "const": "assessment_local_artifact_reference"
+                                  }
+                                },
+                                "required": ["reference_strategy"]
+                              }
+                            },
+                            "required": ["related_ref_kind", "subject_ref"]
+                          }
+                        }
+                      },
+                      "required": ["related_refs"]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": ["diagnostics"]
+          },
+          "then": {
+            "properties": {
+              "reference_scope": {
+                "properties": {
+                  "scope_kind": {
+                    "enum": [
+                      "assessment_package_scope",
+                      "explicit_coupling_scope"
+                    ]
+                  }
+                }
+              }
+            },
+            "required": ["reference_scope"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "assessment_subject": {
+                "properties": {
+                  "reference_strategy": {"const": "coupled_subject"}
+                },
+                "required": ["reference_strategy"]
+              }
+            },
+            "required": ["assessment_subject"]
+          },
+          "then": {
+            "properties": {
+              "reference_scope": {
+                "properties": {
+                  "scope_kind": {"const": "explicit_coupling_scope"}
+                }
+              }
+            },
+            "required": ["reference_scope"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "profile_requirement_artifact_reference": {
+                "properties": {
+                  "reference_strategy": {
+                    "const": "coupled_profile_requirement_artifact"
+                  }
+                },
+                "required": ["reference_strategy"]
+              }
+            },
+            "required": ["profile_requirement_artifact_reference"]
+          },
+          "then": {
+            "properties": {
+              "reference_scope": {
+                "properties": {
+                  "scope_kind": {"const": "explicit_coupling_scope"}
+                }
+              }
+            },
+            "required": ["reference_scope"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "assessment_subject": {
+                "properties": {
+                  "reference_strategy": {
+                    "const": "assessment_local_artifact_reference"
+                  }
+                },
+                "required": ["reference_strategy"]
+              }
+            },
+            "required": ["assessment_subject"]
+          },
+          "then": {
+            "properties": {
+              "reference_scope": {
+                "properties": {
+                  "scope_kind": {
+                    "enum": [
+                      "assessment_package_scope",
+                      "explicit_coupling_scope"
+                    ]
+                  }
+                }
+              }
+            },
+            "required": ["reference_scope"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "profile_requirement_artifact_reference": {
+                "properties": {
+                  "reference_strategy": {
+                    "const": "assessment_local_artifact_reference"
+                  }
+                },
+                "required": ["reference_strategy"]
+              }
+            },
+            "required": ["profile_requirement_artifact_reference"]
+          },
+          "then": {
+            "properties": {
+              "reference_scope": {
+                "properties": {
+                  "scope_kind": {
+                    "enum": [
+                      "assessment_package_scope",
+                      "explicit_coupling_scope"
+                    ]
+                  }
+                }
+              }
+            },
+            "required": ["reference_scope"]
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "requirement_results": {
+                    "contains": {
+                      "properties": {
+                        "requirement_ref": {
+                          "properties": {
+                            "reference_strategy": {
+                              "const": "locator_occurrence_reference"
+                            }
+                          },
+                          "required": ["reference_strategy"]
+                        }
+                      },
+                      "required": ["requirement_ref"]
+                    }
+                  }
+                },
+                "required": ["requirement_results"]
+              },
+              {
+                "properties": {
+                  "diagnostics": {
+                    "contains": {
+                      "anyOf": [
+                        {
+                          "properties": {
+                            "requirement_ref": {
+                              "properties": {
+                                "reference_strategy": {
+                                  "const": "locator_occurrence_reference"
+                                }
+                              },
+                              "required": ["reference_strategy"]
+                            }
+                          },
+                          "required": ["requirement_ref"]
+                        },
+                        {
+                          "properties": {
+                            "related_refs": {
+                              "contains": {
+                                "properties": {
+                                  "related_ref_kind": {"const": "requirement"},
+                                  "requirement_ref": {
+                                    "properties": {
+                                      "reference_strategy": {
+                                        "const": "locator_occurrence_reference"
+                                      }
+                                    },
+                                    "required": ["reference_strategy"]
+                                  }
+                                },
+                                "required": [
+                                  "related_ref_kind",
+                                  "requirement_ref"
+                                ]
+                              }
+                            }
+                          },
+                          "required": ["related_refs"]
+                        }
+                      ]
+                    }
+                  }
+                },
+                "required": ["diagnostics"]
+              }
+            ]
+          },
+          "then": {
+            "anyOf": [
+              {"required": ["profile_requirement_artifact_reference"]},
+              {
+                "properties": {
+                  "reference_scope": {
+                    "properties": {
+                      "scope_kind": {
+                        "enum": [
+                          "assessment_package_scope",
+                          "explicit_coupling_scope"
+                        ]
+                      }
+                    },
+                    "required": ["scope_kind"]
+                  }
+                },
+                "required": ["reference_scope"]
+              }
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

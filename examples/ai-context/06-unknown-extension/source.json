@@ -1,0 +1,39 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000a600",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "sci": "https://example.invalid/illustrative/science/",
+    "opaque": "https://example.invalid/illustrative/opaque-extension/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a601",
+      "kind": "concept",
+      "extensions": {
+        "opaque:quality-packet": {
+          "code": "Q7",
+          "samples": [3, 5, 8],
+          "nested": {
+            "flag": true,
+            "note": "opaque to this Profile"
+          }
+        }
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000a602",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000a601",
+        "location": "in-document"
+      },
+      "property": "sci:label",
+      "value": "Specimen A"
+    }
+  ]
+}

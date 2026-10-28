@@ -1,0 +1,44 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000058c",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "revision": {
+    "id": "urn:uuid:00000000-0000-4000-8000-00000000058d"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000058e",
+      "kind": "concept"
+    }
+  ],
+  "history": {
+    "completeness": "partial",
+    "changes": [
+      {
+        "revision": {
+          "target": "urn:uuid:00000000-0000-4000-8000-00000000058d",
+          "location": "in-document"
+        },
+        "targets": [
+          {
+            "target": "urn:uuid:00000000-0000-4000-8000-00000000058e",
+            "location": "in-document"
+          }
+        ],
+        "kind": "ex:change",
+        "validity": {
+          "kind": "ex:time",
+          "from": {
+            "kind": "date",
+            "value": "2026-01-01"
+          }
+        }
+      }
+    ]
+  }
+}

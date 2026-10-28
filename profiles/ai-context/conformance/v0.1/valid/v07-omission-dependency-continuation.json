@@ -1,0 +1,126 @@
+{
+  "artifact_kind": "projection_artifact",
+  "binding": {
+    "family": "https://geesno.com/binding/ai-context-json",
+    "version": "0.1.0"
+  },
+  "profile_edition": {
+    "profile_family": "https://geesno.com/profile/ai-context",
+    "profile_version": "0.1.0"
+  },
+  "source_state": {
+    "semantic_document_id": "urn:uuid:00000000-0000-4000-8000-00000000a000",
+    "source_state_descriptor": "fixture-state-r1"
+  },
+  "selection_context": {
+    "selection_context_kind": "fixture-explicit-records",
+    "selection_descriptor": {
+      "record_ids": [
+        "urn:uuid:00000000-0000-4000-8000-00000000a101",
+        "urn:uuid:00000000-0000-4000-8000-00000000a404"
+      ]
+    }
+  },
+  "projection_scope": {
+    "scope_kind": "fixture-record-set",
+    "scope_descriptor": {
+      "record_ids": [
+        "urn:uuid:00000000-0000-4000-8000-00000000a101",
+        "urn:uuid:00000000-0000-4000-8000-00000000a404"
+      ]
+    },
+    "requirement_reference": "projection-baseline"
+  },
+  "projection_completeness": "partial",
+  "carried_content": {
+    "entities": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+        "kind": "concept"
+      }
+    ],
+    "assertions": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000a404",
+        "kind": "relation",
+        "subject": {
+          "target": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+          "location": "in-document"
+        },
+        "predicate": "test:depends-on",
+        "object": {
+          "target": "urn:fixture:external-context",
+          "location": "out-of-document"
+        }
+      }
+    ]
+  },
+  "namespaces": {
+    "test": "https://example.invalid/terms/"
+  },
+  "reference_availability": [
+    {
+      "descriptor_id": "availability-carried-entity",
+      "reference_target": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+      "availability_state": "carried"
+    },
+    {
+      "descriptor_id": "availability-external-context",
+      "reference_target": "urn:fixture:external-context",
+      "availability_state": "external",
+      "primary_descriptor_reference": {
+        "descriptor_group": "dependency_continuations",
+        "descriptor_id": "dependency-external-context"
+      }
+    }
+  ],
+  "omissions": [
+    {
+      "descriptor_id": "omission-external-context",
+      "omitted_target": "urn:fixture:external-context",
+      "omission_category": "material-dependency",
+      "requirement_reference": "material-context-omission",
+      "dependency_continuation_reference": {
+        "descriptor_group": "dependency_continuations",
+        "descriptor_id": "dependency-external-context"
+      }
+    }
+  ],
+  "dependency_continuations": [
+    {
+      "descriptor_id": "dependency-external-context",
+      "dependency_target": "urn:fixture:external-context",
+      "dependency_descriptor": "inert-follow-up-metadata",
+      "reference_availability_reference": {
+        "descriptor_group": "reference_availability",
+        "descriptor_id": "availability-external-context"
+      },
+      "omission_reference": {
+        "descriptor_group": "omissions",
+        "descriptor_id": "omission-external-context"
+      }
+    }
+  ],
+  "material_context": [
+    {
+      "descriptor_id": "material-external-omission",
+      "context_target": "urn:fixture:external-context",
+      "preservation_state": "omitted",
+      "omission_reference": {
+        "descriptor_group": "omissions",
+        "descriptor_id": "omission-external-context"
+      },
+      "requirement_reference": "material-context-omission"
+    },
+    {
+      "descriptor_id": "material-external-dependency",
+      "context_target": "urn:fixture:external-context",
+      "preservation_state": "dependency_continuation",
+      "dependency_continuation_reference": {
+        "descriptor_group": "dependency_continuations",
+        "descriptor_id": "dependency-external-context"
+      },
+      "requirement_reference": "material-context-dependency"
+    }
+  ]
+}

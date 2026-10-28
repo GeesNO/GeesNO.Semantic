@@ -1,0 +1,135 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000c000",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "obs": "https://example.invalid/illustrative/observation/",
+    "trace": "https://example.invalid/illustrative/trace/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+      "kind": "concept",
+      "provenance": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000c111",
+          "kind": "trace:derived",
+          "sources": [
+            {
+              "target": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+              "location": "in-document"
+            }
+          ],
+          "details": "Calibrated observation series"
+        }
+      ],
+      "confidence": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000c112",
+          "score": {
+            "kind": "decimal",
+            "coefficient": "94",
+            "exponent": "-2"
+          },
+          "method": "trace:repeatable"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000c113",
+          "disposition": "trace:reviewed",
+          "details": "Independent method check recorded"
+        }
+      ],
+      "validity": {
+        "kind": "trace:observation-window",
+        "from": {
+          "kind": "date",
+          "value": "2026-09-01"
+        },
+        "until": {
+          "kind": "date",
+          "value": "2026-09-30"
+        }
+      }
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000c102",
+      "kind": "representation"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000c103",
+      "kind": "concept"
+    }
+  ],
+  "sources": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+      "locations": [
+        {
+          "kind": "trace:resource",
+          "value": "observation-series-A"
+        }
+      ],
+      "revision": {
+        "kind": "trace:edition",
+        "value": "r3"
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000c301",
+      "entity": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000c102",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "trace:row",
+        "value": "row-17"
+      },
+      "method": "trace:correlated"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000c401",
+      "kind": "relation",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+        "location": "in-document"
+      },
+      "predicate": "obs:represented-by",
+      "object": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000c102",
+        "location": "in-document"
+      }
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000c402",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+        "location": "in-document"
+      },
+      "property": "obs:label",
+      "value": "Sample temperature observation"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000c403",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000c103",
+        "location": "in-document"
+      },
+      "property": "obs:label",
+      "value": "Unselected background note"
+    }
+  ]
+}

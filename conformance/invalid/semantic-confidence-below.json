@@ -1,0 +1,24 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000050a",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000050b",
+      "kind": "concept",
+      "confidence": [
+        {
+          "score": {
+            "kind": "integer",
+            "value": "-1"
+          }
+        }
+      ]
+    }
+  ]
+}

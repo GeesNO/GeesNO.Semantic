@@ -1,0 +1,105 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000d000",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "data": "https://example.invalid/illustrative/dataset/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d101",
+      "kind": "concept",
+      "provenance": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000d111",
+          "kind": "data:observed",
+          "details": "First row in the illustrative series"
+        }
+      ]
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d102",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d103",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d104",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d105",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d106",
+      "kind": "concept"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d201",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000d101",
+        "location": "in-document"
+      },
+      "property": "data:value",
+      "value": "18.2"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d202",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000d102",
+        "location": "in-document"
+      },
+      "property": "data:value",
+      "value": "18.4"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d203",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000d103",
+        "location": "in-document"
+      },
+      "property": "data:value",
+      "value": "18.5"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d204",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000d104",
+        "location": "in-document"
+      },
+      "property": "data:value",
+      "value": "18.7"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d205",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000d105",
+        "location": "in-document"
+      },
+      "property": "data:value",
+      "value": "18.8"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000d206",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000d106",
+        "location": "in-document"
+      },
+      "property": "data:value",
+      "value": "19.0"
+    }
+  ]
+}

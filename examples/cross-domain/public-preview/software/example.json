@@ -1,0 +1,119 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:75000000-0000-4000-8000-000000000001",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "code": "https://example.invalid/geesno-learning/software/",
+    "prov": "https://example.invalid/geesno-learning/provenance/"
+  },
+  "revision": {
+    "id": "urn:uuid:75000000-0000-4000-8000-000000000040"
+  },
+  "sources": [
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000002"
+    }
+  ],
+  "entities": [
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000010",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000011",
+      "kind": "representation"
+    },
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000012",
+      "kind": "concept"
+    }
+  ],
+  "bindings": [
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000020",
+      "entity": {
+        "target": "urn:uuid:75000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:75000000-0000-4000-8000-000000000002",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "code:symbol",
+        "value": "src/reporting#formatter"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000030",
+      "kind": "concept_representation",
+      "subject": {
+        "target": "urn:uuid:75000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "concept": {
+        "target": "urn:uuid:75000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      }
+    },
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000031",
+      "kind": "type",
+      "subject": {
+        "target": "urn:uuid:75000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "type": "code:module"
+    },
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000032",
+      "kind": "type",
+      "subject": {
+        "target": "urn:uuid:75000000-0000-4000-8000-000000000012",
+        "location": "in-document"
+      },
+      "type": "code:module"
+    },
+    {
+      "id": "urn:uuid:75000000-0000-4000-8000-000000000033",
+      "kind": "relation",
+      "subject": {
+        "target": "urn:uuid:75000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "predicate": "code:depends-on",
+      "object": {
+        "target": "urn:uuid:75000000-0000-4000-8000-000000000012",
+        "location": "in-document"
+      },
+      "provenance": [
+        {
+          "kind": "prov:derived-by-static-analysis"
+        }
+      ]
+    }
+  ],
+  "history": {
+    "completeness": "partial",
+    "changes": [
+      {
+        "id": "urn:uuid:75000000-0000-4000-8000-000000000041",
+        "revision": {
+          "target": "urn:uuid:75000000-0000-4000-8000-000000000040",
+          "location": "in-document"
+        },
+        "targets": [
+          {
+            "target": "urn:uuid:75000000-0000-4000-8000-000000000033",
+            "location": "in-document"
+          }
+        ],
+        "kind": "code:described"
+      }
+    ]
+  }
+}

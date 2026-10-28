@@ -1,0 +1,3 @@
+# Reference conformance tooling only; these packages are not part of the standard.
+jsonschema==4.26.0
+rfc3987-syntax2==1.3.2

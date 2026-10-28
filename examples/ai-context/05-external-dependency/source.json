@@ -1,0 +1,31 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000f000",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "module": "https://example.invalid/illustrative/module/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000f101",
+      "kind": "concept"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000f201",
+      "kind": "relation",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000f101",
+        "location": "in-document"
+      },
+      "predicate": "module:depends-on-method",
+      "object": {
+        "target": "urn:example:dependency:method-catalog:2026-01",
+        "location": "out-of-document"
+      }
+    }
+  ]
+}

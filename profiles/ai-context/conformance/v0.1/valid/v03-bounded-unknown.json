@@ -1,0 +1,46 @@
+{
+  "artifact_kind": "projection_artifact",
+  "binding": {
+    "family": "https://geesno.com/binding/ai-context-json",
+    "version": "0.1.0"
+  },
+  "profile_edition": {
+    "profile_family": "https://geesno.com/profile/ai-context",
+    "profile_version": "0.1.0"
+  },
+  "source_state": {
+    "semantic_document_id": "urn:uuid:00000000-0000-4000-8000-00000000a000",
+    "source_state_descriptor": "fixture-state-r1"
+  },
+  "selection_context": {
+    "selection_context_kind": "fixture-anchor",
+    "selection_descriptor": "urn:uuid:00000000-0000-4000-8000-00000000a103"
+  },
+  "projection_scope": {
+    "scope_kind": "fixture-anchor",
+    "scope_descriptor": {
+      "anchor_record_id": "urn:uuid:00000000-0000-4000-8000-00000000a103",
+      "coverage": "not-established"
+    },
+    "requirement_reference": "projection-baseline"
+  },
+  "projection_completeness": "unknown",
+  "carried_content": {
+    "entities": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000a103",
+        "kind": "concept"
+      }
+    ]
+  },
+  "reference_availability": [],
+  "boundedness": [
+    {
+      "descriptor_id": "bound-record-count",
+      "bound_dimension": "record-count",
+      "bound_rule": "maximum-carried-records",
+      "limit_value": 1,
+      "bound_reached": true
+    }
+  ]
+}

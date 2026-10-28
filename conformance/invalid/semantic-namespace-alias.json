@@ -1,0 +1,11 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000004f6",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "a": "https://example.invalid/base/",
+    "b": "https://example.invalid/base/"
+  }
+}

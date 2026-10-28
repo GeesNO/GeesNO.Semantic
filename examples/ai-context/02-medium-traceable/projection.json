@@ -1,0 +1,196 @@
+{
+  "artifact_kind": "projection_artifact",
+  "binding": {
+    "family": "https://geesno.com/binding/ai-context-json",
+    "version": "0.1.0"
+  },
+  "profile_edition": {
+    "profile_family": "https://geesno.com/profile/ai-context",
+    "profile_version": "0.1.0"
+  },
+  "source_state": {
+    "semantic_document_id": "urn:uuid:00000000-0000-4000-8000-00000000c000",
+    "source_state_descriptor": "illustrative-observation-state-r3"
+  },
+  "selection_context": {
+    "selection_context_kind": "illustrative-explicit-records",
+    "selection_descriptor": {
+      "record_ids": [
+        "urn:uuid:00000000-0000-4000-8000-00000000c101",
+        "urn:uuid:00000000-0000-4000-8000-00000000c102",
+        "urn:uuid:00000000-0000-4000-8000-00000000c201",
+        "urn:uuid:00000000-0000-4000-8000-00000000c301",
+        "urn:uuid:00000000-0000-4000-8000-00000000c401",
+        "urn:uuid:00000000-0000-4000-8000-00000000c402"
+      ]
+    }
+  },
+  "projection_scope": {
+    "scope_kind": "illustrative-record-set",
+    "scope_descriptor": {
+      "record_ids": [
+        "urn:uuid:00000000-0000-4000-8000-00000000c101",
+        "urn:uuid:00000000-0000-4000-8000-00000000c102",
+        "urn:uuid:00000000-0000-4000-8000-00000000c201",
+        "urn:uuid:00000000-0000-4000-8000-00000000c301",
+        "urn:uuid:00000000-0000-4000-8000-00000000c401",
+        "urn:uuid:00000000-0000-4000-8000-00000000c402"
+      ]
+    },
+    "requirement_reference": "projection-baseline"
+  },
+  "projection_completeness": "complete",
+  "carried_content": {
+    "entities": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+        "kind": "concept",
+        "provenance": [
+          {
+            "id": "urn:uuid:00000000-0000-4000-8000-00000000c111",
+            "kind": "trace:derived",
+            "sources": [
+              {
+                "target": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+                "location": "in-document"
+              }
+            ],
+            "details": "Calibrated observation series"
+          }
+        ],
+        "confidence": [
+          {
+            "id": "urn:uuid:00000000-0000-4000-8000-00000000c112",
+            "score": {
+              "kind": "decimal",
+              "coefficient": "94",
+              "exponent": "-2"
+            },
+            "method": "trace:repeatable"
+          }
+        ],
+        "reviews": [
+          {
+            "id": "urn:uuid:00000000-0000-4000-8000-00000000c113",
+            "disposition": "trace:reviewed",
+            "details": "Independent method check recorded"
+          }
+        ],
+        "validity": {
+          "kind": "trace:observation-window",
+          "from": {
+            "kind": "date",
+            "value": "2026-09-01"
+          },
+          "until": {
+            "kind": "date",
+            "value": "2026-09-30"
+          }
+        }
+      },
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000c102",
+        "kind": "representation"
+      }
+    ],
+    "sources": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+        "locations": [
+          {
+            "kind": "trace:resource",
+            "value": "observation-series-A"
+          }
+        ],
+        "revision": {
+          "kind": "trace:edition",
+          "value": "r3"
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000c301",
+        "entity": {
+          "target": "urn:uuid:00000000-0000-4000-8000-00000000c102",
+          "location": "in-document"
+        },
+        "source": {
+          "target": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+          "location": "in-document"
+        },
+        "locator": {
+          "kind": "trace:row",
+          "value": "row-17"
+        },
+        "method": "trace:correlated"
+      }
+    ],
+    "assertions": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000c401",
+        "kind": "relation",
+        "subject": {
+          "target": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+          "location": "in-document"
+        },
+        "predicate": "obs:represented-by",
+        "object": {
+          "target": "urn:uuid:00000000-0000-4000-8000-00000000c102",
+          "location": "in-document"
+        }
+      },
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000c402",
+        "kind": "property",
+        "subject": {
+          "target": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+          "location": "in-document"
+        },
+        "property": "obs:label",
+        "value": "Sample temperature observation"
+      }
+    ]
+  },
+  "namespaces": {
+    "obs": "https://example.invalid/illustrative/observation/",
+    "trace": "https://example.invalid/illustrative/trace/"
+  },
+  "reference_availability": [
+    {
+      "reference_target": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+      "availability_state": "carried"
+    },
+    {
+      "reference_target": "urn:uuid:00000000-0000-4000-8000-00000000c102",
+      "availability_state": "carried"
+    },
+    {
+      "reference_target": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+      "availability_state": "carried"
+    }
+  ],
+  "material_context": [
+    {
+      "descriptor_id": "material-observation-trust",
+      "context_target": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+      "preservation_state": "carried",
+      "carried_record_reference": "urn:uuid:00000000-0000-4000-8000-00000000c101",
+      "requirement_reference": "material-context-carry"
+    },
+    {
+      "descriptor_id": "material-origin-source",
+      "context_target": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+      "preservation_state": "carried",
+      "carried_record_reference": "urn:uuid:00000000-0000-4000-8000-00000000c201",
+      "requirement_reference": "source-record-traceability"
+    },
+    {
+      "descriptor_id": "material-origin-binding",
+      "context_target": "urn:uuid:00000000-0000-4000-8000-00000000c301",
+      "preservation_state": "carried",
+      "carried_record_reference": "urn:uuid:00000000-0000-4000-8000-00000000c301",
+      "requirement_reference": "binding-record-traceability"
+    }
+  ]
+}

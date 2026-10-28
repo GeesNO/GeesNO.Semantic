@@ -1,0 +1,58 @@
+{
+  "artifact_kind": "projection_artifact",
+  "binding": {
+    "family": "https://geesno.com/binding/ai-context-json",
+    "version": "0.1.0"
+  },
+  "profile_edition": {
+    "profile_family": "https://geesno.com/profile/ai-context",
+    "profile_version": "0.1.0"
+  },
+  "source_state": {
+    "semantic_document_id": "urn:uuid:00000000-0000-4000-8000-00000000a000",
+    "source_state_descriptor": "fixture-state-r1"
+  },
+  "selection_context": {
+    "selection_context_kind": "fixture-explicit-records",
+    "selection_descriptor": {
+      "record_ids": ["urn:uuid:00000000-0000-4000-8000-00000000a101"]
+    }
+  },
+  "projection_scope": {
+    "scope_kind": "fixture-record-set",
+    "scope_descriptor": {
+      "record_ids": ["urn:uuid:00000000-0000-4000-8000-00000000a101"]
+    },
+    "requirement_reference": "projection-baseline"
+  },
+  "projection_completeness": "partial",
+  "carried_content": {
+    "entities": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+        "kind": "concept"
+      }
+    ]
+  },
+  "reference_availability": [],
+  "omissions": [
+    {
+      "descriptor_id": "omission-provenance-a111",
+      "omitted_target": "urn:uuid:00000000-0000-4000-8000-00000000a111",
+      "omission_category": "material-context",
+      "requirement_reference": "material-context-omission"
+    }
+  ],
+  "material_context": [
+    {
+      "descriptor_id": "material-provenance-a111",
+      "context_target": "urn:uuid:00000000-0000-4000-8000-00000000a111",
+      "preservation_state": "omitted",
+      "omission_reference": {
+        "descriptor_group": "omissions",
+        "descriptor_id": "omission-provenance-a111"
+      },
+      "requirement_reference": "material-context-omission"
+    }
+  ]
+}

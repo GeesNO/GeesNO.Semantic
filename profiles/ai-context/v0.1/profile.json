@@ -1,0 +1,138 @@
+{
+  "artifact_kind": "profile_requirement_artifact",
+  "binding": {
+    "family": "https://geesno.com/binding/ai-context-json",
+    "version": "0.1.0"
+  },
+  "profile_edition": {
+    "profile_family": "https://geesno.com/profile/ai-context",
+    "profile_version": "0.1.0"
+  },
+  "vocabulary_dependencies": [],
+  "requirements": [
+    {
+      "requirement_id": "projection-baseline",
+      "requirement_kind": "projection",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "projection_artifact",
+        "basis_kind": "always"
+      },
+      "requirement_body": {
+        "scope_descriptor": "explicit_deterministic_scope",
+        "completeness_policy": "partial_projection_allowed",
+        "boundedness_policy": "optional_explicit_finite_bound",
+        "truncation_policy": "declare_established_truncation"
+      }
+    },
+    {
+      "requirement_id": "projection-unknown",
+      "requirement_kind": "projection",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "projection_artifact",
+        "basis_kind": "always"
+      },
+      "requirement_body": {
+        "completeness_policy": "unknown_completeness_allowed"
+      }
+    },
+    {
+      "requirement_id": "material-context-carry",
+      "requirement_kind": "preservation",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "material_context",
+        "basis_kind": "material_context_condition",
+        "expected_value": "carry_required"
+      },
+      "requirement_body": {
+        "preservation_target": "material_context",
+        "material_context_policy": "carry"
+      }
+    },
+    {
+      "requirement_id": "material-context-reference",
+      "requirement_kind": "preservation",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "material_context",
+        "basis_kind": "material_context_condition",
+        "expected_value": "exact_reference_sufficient"
+      },
+      "requirement_body": {
+        "preservation_target": "material_context",
+        "material_context_policy": "exact_reference_sufficient"
+      }
+    },
+    {
+      "requirement_id": "material-context-omission",
+      "requirement_kind": "preservation",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "material_context",
+        "basis_kind": "material_context_condition",
+        "expected_value": "explicit_omission_required"
+      },
+      "requirement_body": {
+        "preservation_target": "material_context",
+        "material_context_policy": "omission_allowed"
+      }
+    },
+    {
+      "requirement_id": "material-context-dependency",
+      "requirement_kind": "preservation",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "material_context",
+        "basis_kind": "material_context_condition",
+        "expected_value": "dependency_continuation_required"
+      },
+      "requirement_body": {
+        "preservation_target": "material_context",
+        "material_context_policy": "dependency_continuation"
+      }
+    },
+    {
+      "requirement_id": "source-record-traceability",
+      "requirement_kind": "source_binding",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "source_record",
+        "basis_kind": "material_to_projection",
+        "expected_value": true
+      },
+      "requirement_body": {
+        "source_participation": "source_record",
+        "target_category": "material_origin_context"
+      }
+    },
+    {
+      "requirement_id": "binding-record-traceability",
+      "requirement_kind": "source_binding",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "binding_record",
+        "basis_kind": "material_to_projection",
+        "expected_value": true
+      },
+      "requirement_body": {
+        "source_participation": "binding_record",
+        "target_category": "material_source_correlation"
+      }
+    },
+    {
+      "requirement_id": "external-reference-closure",
+      "requirement_kind": "closure",
+      "requirement_mode": "required",
+      "applicability": {
+        "subject_category": "projection_artifact",
+        "basis_kind": "always"
+      },
+      "requirement_body": {
+        "closure_scope": "projection_artifact_references",
+        "closure_policy": "external_references_allowed"
+      }
+    }
+  ]
+}

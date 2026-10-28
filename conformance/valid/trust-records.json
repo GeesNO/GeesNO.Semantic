@@ -1,0 +1,51 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000012c",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000012d",
+      "kind": "concept",
+      "provenance": [
+        {
+          "kind": "ex:authored"
+        },
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000012e",
+          "kind": "ex:generated"
+        }
+      ],
+      "confidence": [
+        {
+          "score": {
+            "kind": "integer",
+            "value": "0"
+          }
+        },
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-00000000012f",
+          "score": {
+            "kind": "integer",
+            "value": "1"
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "id": "urn:uuid:00000000-0000-4000-8000-000000000130",
+          "disposition": "ex:reviewed",
+          "reviews": [
+            {
+              "disposition": "ex:confirmed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

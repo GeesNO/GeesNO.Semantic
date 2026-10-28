@@ -1,0 +1,450 @@
+{
+  "binding": {
+    "family": "https://geesno.com/binding/ai-context-assessment-json",
+    "version": "0.1.0"
+  },
+  "artifact_kind": "conformance_result_artifact",
+  "profile_edition": {
+    "profile_family": "https://geesno.com/profile/ai-context",
+    "profile_version": "0.1.0"
+  },
+  "assessment_subject": {
+    "subject_role": "projection_artifact",
+    "reference_strategy": "stable_artifact_identity",
+    "artifact_id": "https://example.invalid/projections/one"
+  },
+  "overall_outcome": "nonconformant",
+  "requirement_results": [
+    {
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "outcome": "violated",
+      "diagnostic_refs": [
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-1"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-2"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-3"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-4"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-5"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-6"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-7"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-8"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-9"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-10"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-11"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-12"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-13"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-14"
+        },
+        {
+          "scope_ref": "assessment",
+          "local_ref": "diagnostic-15"
+        }
+      ],
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      }
+    }
+  ],
+  "reference_scope": {
+    "scope_ref": "assessment",
+    "scope_kind": "result_artifact_scope"
+  },
+  "diagnostics": [
+    {
+      "diagnostic_code": "requirement_violated",
+      "diagnostic_category": "requirement_evaluation",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-1"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "info",
+      "related_refs": [
+        {
+          "related_ref_kind": "assessment_record",
+          "local_reference": {
+            "scope_ref": "assessment",
+            "local_ref": "result-1"
+          }
+        },
+        {
+          "related_ref_kind": "subject",
+          "subject_ref": {
+            "reference_strategy": "stable_artifact_identity",
+            "artifact_id": "https://example.invalid/projections/one"
+          }
+        },
+        {
+          "related_ref_kind": "requirement",
+          "requirement_ref": {
+            "reference_strategy": "stable_requirement_reference",
+            "requirement_id": "projection-baseline"
+          }
+        },
+        {
+          "related_ref_kind": "requirement_result",
+          "requirement_result_ref": {
+            "scope_ref": "assessment",
+            "local_ref": "result-1"
+          }
+        },
+        {
+          "related_ref_kind": "diagnostic",
+          "diagnostic_ref": {
+            "scope_ref": "assessment",
+            "local_ref": "diagnostic-2"
+          }
+        }
+      ]
+    },
+    {
+      "diagnostic_code": "requirement_unsupported",
+      "diagnostic_category": "requirement_evaluation",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-2"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "warning"
+    },
+    {
+      "diagnostic_code": "dependency_unavailable",
+      "diagnostic_category": "dependency_availability",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-3"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "error"
+    },
+    {
+      "diagnostic_code": "requirement_not_applicable",
+      "diagnostic_category": "requirement_evaluation",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-4"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "info"
+    },
+    {
+      "diagnostic_code": "invalid_binding_construct",
+      "diagnostic_category": "binding_structure",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-5"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "warning"
+    },
+    {
+      "diagnostic_code": "unsupported_binding_construct",
+      "diagnostic_category": "binding_structure",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-6"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "error"
+    },
+    {
+      "diagnostic_code": "contradictory_projection_metadata",
+      "diagnostic_category": "binding_structure",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-7"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "info"
+    },
+    {
+      "diagnostic_code": "exact_vocabulary_unavailable",
+      "diagnostic_category": "dependency_availability",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-8"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "warning"
+    },
+    {
+      "diagnostic_code": "profile_requirement_artifact_unavailable",
+      "diagnostic_category": "dependency_availability",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-9"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "error"
+    },
+    {
+      "diagnostic_code": "unresolved_requirement_reference",
+      "diagnostic_category": "requirement_reference",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-10"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "info"
+    },
+    {
+      "diagnostic_code": "missing_namespace_expansion_context",
+      "diagnostic_category": "binding_structure",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-11"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "warning"
+    },
+    {
+      "diagnostic_code": "invalid_reference_availability_consistency",
+      "diagnostic_category": "binding_structure",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-12"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "error"
+    },
+    {
+      "diagnostic_code": "invalid_source_state_reference_preservation",
+      "diagnostic_category": "binding_structure",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-13"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "info"
+    },
+    {
+      "diagnostic_code": "structural_validation_failed",
+      "diagnostic_category": "binding_structure",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-14"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "warning"
+    },
+    {
+      "diagnostic_code": "assessment_input_uninterpretable",
+      "diagnostic_category": "assessment_input",
+      "diagnostic_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "diagnostic-15"
+      },
+      "requirement_ref": {
+        "reference_strategy": "stable_requirement_reference",
+        "requirement_id": "projection-baseline"
+      },
+      "requirement_result_ref": {
+        "scope_ref": "assessment",
+        "local_ref": "result-1"
+      },
+      "subject_ref": {
+        "reference_strategy": "stable_artifact_identity",
+        "artifact_id": "https://example.invalid/projections/one"
+      },
+      "diagnostic_severity": "error"
+    }
+  ]
+}

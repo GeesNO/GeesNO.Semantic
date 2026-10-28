@@ -1,0 +1,30 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-000000000532",
+  "scope": {
+    "completeness": "partial"
+  },
+  "revision": {
+    "id": "urn:uuid:00000000-0000-4000-8000-000000000533",
+    "parents": [
+      {
+        "target": "urn:uuid:00000000-0000-4000-8000-000000000534",
+        "location": "in-document"
+      }
+    ]
+  },
+  "history": {
+    "completeness": "partial",
+    "revisions": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-000000000534",
+        "parents": [
+          {
+            "target": "urn:uuid:00000000-0000-4000-8000-000000000533",
+            "location": "in-document"
+          }
+        ]
+      }
+    ]
+  }
+}

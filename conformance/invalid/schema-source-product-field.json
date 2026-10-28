@@ -1,0 +1,13 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-000000000442",
+  "scope": {
+    "completeness": "partial"
+  },
+  "sources": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000443",
+      "url": "https://example.invalid"
+    }
+  ]
+}

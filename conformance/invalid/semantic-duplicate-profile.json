@@ -1,0 +1,23 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-000000000596",
+  "scope": {
+    "completeness": "partial"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000597",
+      "kind": "concept"
+    }
+  ],
+  "profiles": [
+    {
+      "profile": "https://example.invalid/profile/x",
+      "version": "1"
+    },
+    {
+      "profile": "https://example.invalid/profile/x",
+      "version": "2"
+    }
+  ]
+}

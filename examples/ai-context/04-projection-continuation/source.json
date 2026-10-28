@@ -1,0 +1,56 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000e000",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "doc": "https://example.invalid/illustrative/document/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000e101",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000e102",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000e103",
+      "kind": "concept"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000e201",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000e101",
+        "location": "in-document"
+      },
+      "property": "doc:heading",
+      "value": "Scope"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000e202",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000e102",
+        "location": "in-document"
+      },
+      "property": "doc:heading",
+      "value": "Method"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000e203",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000e103",
+        "location": "in-document"
+      },
+      "property": "doc:heading",
+      "value": "Results"
+    }
+  ]
+}

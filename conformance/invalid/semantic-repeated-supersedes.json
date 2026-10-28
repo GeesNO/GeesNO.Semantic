@@ -1,0 +1,48 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-000000000550",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000551",
+      "kind": "concept"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000552",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-000000000551",
+        "location": "in-document"
+      },
+      "property": "ex:p",
+      "value": "old"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000553",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-000000000551",
+        "location": "in-document"
+      },
+      "property": "ex:p",
+      "value": "new",
+      "supersedes": [
+        {
+          "target": "urn:uuid:00000000-0000-4000-8000-000000000552",
+          "location": "in-document"
+        },
+        {
+          "target": "urn:uuid:00000000-0000-4000-8000-000000000552",
+          "location": "in-document"
+        }
+      ]
+    }
+  ]
+}

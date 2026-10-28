@@ -1,0 +1,858 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeesNO.Semantic AI Context JSON Binding 0.1",
+  "description": "Normative structural schema for ai-context-json/0.1.0 Profile requirement and Projection artifacts. Semantic validation remains governed by the normative specification.",
+  "x-geesno-status": "s4-i2-implemented",
+  "oneOf": [
+    {"$ref": "#/$defs/profileRequirementArtifact"},
+    {"$ref": "#/$defs/projectionArtifact"}
+  ],
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "exactOpaqueVersion": {
+      "allOf": [
+        {"$ref": "#/$defs/nonEmptyString"},
+        {"not": {"const": "latest"}}
+      ]
+    },
+    "absoluteIri": {
+      "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/identifier"
+    },
+    "profileDefinedValue": {
+      "not": {"type": "null"}
+    },
+    "nonNegativeCount": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]*)$"
+    },
+    "bindingHeader": {
+      "type": "object",
+      "required": ["family", "version"],
+      "properties": {
+        "family": {"const": "https://geesno.com/binding/ai-context-json"},
+        "version": {"const": "0.1.0"}
+      },
+      "additionalProperties": false
+    },
+    "profileEdition": {
+      "type": "object",
+      "required": ["profile_family", "profile_version"],
+      "properties": {
+        "profile_family": {"const": "https://geesno.com/profile/ai-context"},
+        "profile_version": {"$ref": "#/$defs/exactOpaqueVersion"}
+      },
+      "additionalProperties": false
+    },
+    "artifactMetadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "descriptorReference": {
+      "type": "object",
+      "required": ["descriptor_group", "descriptor_id"],
+      "properties": {
+        "descriptor_group": {
+          "enum": [
+            "boundedness",
+            "omissions",
+            "projection_continuations",
+            "dependency_continuations",
+            "material_context",
+            "reference_availability"
+          ]
+        },
+        "descriptor_id": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "additionalProperties": false
+    },
+    "boundednessDescriptorReference": {
+      "allOf": [
+        {"$ref": "#/$defs/descriptorReference"},
+        {
+          "properties": {
+            "descriptor_group": {"const": "boundedness"}
+          }
+        }
+      ]
+    },
+    "omissionDescriptorReference": {
+      "allOf": [
+        {"$ref": "#/$defs/descriptorReference"},
+        {
+          "properties": {
+            "descriptor_group": {"const": "omissions"}
+          }
+        }
+      ]
+    },
+    "dependencyContinuationDescriptorReference": {
+      "allOf": [
+        {"$ref": "#/$defs/descriptorReference"},
+        {
+          "properties": {
+            "descriptor_group": {"const": "dependency_continuations"}
+          }
+        }
+      ]
+    },
+    "referenceAvailabilityDescriptorReference": {
+      "allOf": [
+        {"$ref": "#/$defs/descriptorReference"},
+        {
+          "properties": {
+            "descriptor_group": {"const": "reference_availability"}
+          }
+        }
+      ]
+    },
+    "primaryDescriptorReference": {
+      "allOf": [
+        {"$ref": "#/$defs/descriptorReference"},
+        {
+          "properties": {
+            "descriptor_group": {
+              "enum": [
+                "omissions",
+                "projection_continuations",
+                "dependency_continuations",
+                "material_context"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "vocabularyEdition": {
+      "type": "object",
+      "required": ["vocabulary_family", "vocabulary_version"],
+      "properties": {
+        "vocabulary_family": {"$ref": "#/$defs/absoluteIri"},
+        "vocabulary_version": {"$ref": "#/$defs/exactOpaqueVersion"}
+      },
+      "additionalProperties": false
+    },
+    "vocabularyDependency": {
+      "type": "object",
+      "required": [
+        "vocabulary_family",
+        "vocabulary_version",
+        "dependency_role"
+      ],
+      "properties": {
+        "vocabulary_family": {"$ref": "#/$defs/absoluteIri"},
+        "vocabulary_version": {"$ref": "#/$defs/exactOpaqueVersion"},
+        "dependency_role": {
+          "enum": [
+            "required_exact_edition",
+            "allowed_alternative_exact_edition"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "applicability": {
+      "type": "object",
+      "required": ["subject_category", "basis_kind"],
+      "properties": {
+        "subject_category": {"$ref": "#/$defs/nonEmptyString"},
+        "basis_kind": {"$ref": "#/$defs/nonEmptyString"},
+        "context_reference": {"$ref": "#/$defs/nonEmptyString"},
+        "expected_value": {"$ref": "#/$defs/profileDefinedValue"}
+      },
+      "additionalProperties": false
+    },
+    "structureRequirementBody": {
+      "type": "object",
+      "properties": {
+        "artifact_kind": {
+          "enum": [
+            "profile_requirement_artifact",
+            "projection_artifact"
+          ]
+        },
+        "record_category": {"$ref": "#/$defs/nonEmptyString"},
+        "member_group": {"$ref": "#/$defs/nonEmptyString"},
+        "member_name": {"$ref": "#/$defs/nonEmptyString"},
+        "allowed_binding_value": {"$ref": "#/$defs/nonEmptyString"},
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "anyOf": [
+        {"required": ["artifact_kind"]},
+        {"required": ["record_category"]},
+        {"required": ["member_group"]},
+        {"required": ["member_name"]},
+        {"required": ["allowed_binding_value"]}
+      ],
+      "additionalProperties": false
+    },
+    "cardinalityRequirementBody": {
+      "type": "object",
+      "required": ["count_target", "count_scope"],
+      "properties": {
+        "count_target": {"$ref": "#/$defs/nonEmptyString"},
+        "count_scope": {"$ref": "#/$defs/profileDefinedValue"},
+        "min_count": {"$ref": "#/$defs/nonNegativeCount"},
+        "max_count": {"$ref": "#/$defs/nonNegativeCount"},
+        "exact_count": {"$ref": "#/$defs/nonNegativeCount"}
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {"required": ["min_count"]},
+            {"required": ["max_count"]},
+            {"required": ["exact_count"]}
+          ]
+        },
+        {
+          "not": {
+            "allOf": [
+              {"required": ["exact_count"]},
+              {
+                "anyOf": [
+                  {"required": ["min_count"]},
+                  {"required": ["max_count"]}
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "vocabularyRequirementBody": {
+      "type": "object",
+      "properties": {
+        "vocabulary_family": {"$ref": "#/$defs/absoluteIri"},
+        "vocabulary_version": {"$ref": "#/$defs/exactOpaqueVersion"},
+        "term_identity": {"$ref": "#/$defs/absoluteIri"},
+        "allowed_alternative_exact_edition": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/vocabularyEdition"}
+        },
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "dependentRequired": {
+        "vocabulary_family": ["vocabulary_version"],
+        "vocabulary_version": ["vocabulary_family"]
+      },
+      "anyOf": [
+        {"required": ["vocabulary_family", "vocabulary_version"]},
+        {"required": ["term_identity"]}
+      ],
+      "additionalProperties": false
+    },
+    "projectionRequirementBody": {
+      "type": "object",
+      "properties": {
+        "scope_descriptor": {"$ref": "#/$defs/profileDefinedValue"},
+        "completeness_policy": {
+          "enum": [
+            "complete_projection",
+            "partial_projection_allowed",
+            "unknown_completeness_allowed"
+          ]
+        },
+        "boundedness_policy": {"$ref": "#/$defs/profileDefinedValue"},
+        "truncation_policy": {"$ref": "#/$defs/profileDefinedValue"},
+        "projection_continuation_policy": {
+          "$ref": "#/$defs/profileDefinedValue"
+        },
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "anyOf": [
+        {"required": ["scope_descriptor"]},
+        {"required": ["completeness_policy"]},
+        {"required": ["boundedness_policy"]},
+        {"required": ["truncation_policy"]},
+        {"required": ["projection_continuation_policy"]}
+      ],
+      "additionalProperties": false
+    },
+    "preservationRequirementBody": {
+      "type": "object",
+      "required": ["preservation_target", "material_context_policy"],
+      "properties": {
+        "preservation_target": {"$ref": "#/$defs/profileDefinedValue"},
+        "material_context_policy": {
+          "enum": [
+            "carry",
+            "materialize",
+            "exact_reference_sufficient",
+            "omission_allowed",
+            "dependency_continuation"
+          ]
+        },
+        "dependency_continuation_reference": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "allOf": [
+        {
+          "if": {"required": ["dependency_continuation_reference"]},
+          "then": {
+            "properties": {
+              "material_context_policy": {
+                "const": "dependency_continuation"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "sourceBindingRequirementBody": {
+      "type": "object",
+      "required": ["source_participation"],
+      "properties": {
+        "source_participation": {
+          "enum": [
+            "source_record",
+            "binding_record",
+            "locator",
+            "source_state",
+            "source_revision"
+          ]
+        },
+        "target_category": {"$ref": "#/$defs/nonEmptyString"},
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "additionalProperties": false
+    },
+    "extensionRequirementBody": {
+      "type": "object",
+      "required": [
+        "extension_term",
+        "host_category",
+        "extension_handling"
+      ],
+      "properties": {
+        "extension_term": {"$ref": "#/$defs/absoluteIri"},
+        "host_category": {"$ref": "#/$defs/nonEmptyString"},
+        "extension_handling": {
+          "enum": [
+            "presence",
+            "understanding",
+            "preservation",
+            "payload_constraint"
+          ]
+        },
+        "payload_constraint_reference": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "extension_handling": {"const": "payload_constraint"}
+            },
+            "required": ["extension_handling"]
+          },
+          "then": {"required": ["payload_constraint_reference"]},
+          "else": {
+            "not": {"required": ["payload_constraint_reference"]}
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "closureRequirementBody": {
+      "type": "object",
+      "required": ["closure_scope", "closure_policy"],
+      "properties": {
+        "closure_scope": {"$ref": "#/$defs/profileDefinedValue"},
+        "closure_policy": {
+          "enum": [
+            "self_contained",
+            "external_references_allowed",
+            "external_references_disallowed"
+          ]
+        },
+        "closure_target": {"$ref": "#/$defs/profileDefinedValue"},
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "additionalProperties": false
+    },
+    "requirementEnvelope": {
+      "type": "object",
+      "required": [
+        "requirement_kind",
+        "requirement_mode",
+        "applicability",
+        "requirement_body"
+      ],
+      "properties": {
+        "requirement_id": {"$ref": "#/$defs/nonEmptyString"},
+        "requirement_kind": {
+          "enum": [
+            "structure",
+            "cardinality",
+            "vocabulary",
+            "projection",
+            "preservation",
+            "source_binding",
+            "extension",
+            "closure"
+          ]
+        },
+        "requirement_mode": {
+          "enum": ["required", "optional", "prohibited"]
+        },
+        "applicability": {"$ref": "#/$defs/applicability"},
+        "requirement_body": {"type": "object"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"requirement_kind": {"const": "structure"}},
+            "required": ["requirement_kind"]
+          },
+          "then": {
+            "properties": {
+              "requirement_body": {
+                "$ref": "#/$defs/structureRequirementBody"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"requirement_kind": {"const": "cardinality"}},
+            "required": ["requirement_kind"]
+          },
+          "then": {
+            "properties": {
+              "requirement_body": {
+                "$ref": "#/$defs/cardinalityRequirementBody"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"requirement_kind": {"const": "vocabulary"}},
+            "required": ["requirement_kind"]
+          },
+          "then": {
+            "properties": {
+              "requirement_body": {
+                "$ref": "#/$defs/vocabularyRequirementBody"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"requirement_kind": {"const": "projection"}},
+            "required": ["requirement_kind"]
+          },
+          "then": {
+            "properties": {
+              "requirement_body": {
+                "$ref": "#/$defs/projectionRequirementBody"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"requirement_kind": {"const": "preservation"}},
+            "required": ["requirement_kind"]
+          },
+          "then": {
+            "properties": {
+              "requirement_body": {
+                "$ref": "#/$defs/preservationRequirementBody"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"requirement_kind": {"const": "source_binding"}},
+            "required": ["requirement_kind"]
+          },
+          "then": {
+            "properties": {
+              "requirement_body": {
+                "$ref": "#/$defs/sourceBindingRequirementBody"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"requirement_kind": {"const": "extension"}},
+            "required": ["requirement_kind"]
+          },
+          "then": {
+            "properties": {
+              "requirement_body": {
+                "$ref": "#/$defs/extensionRequirementBody"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"requirement_kind": {"const": "closure"}},
+            "required": ["requirement_kind"]
+          },
+          "then": {
+            "properties": {
+              "requirement_body": {
+                "$ref": "#/$defs/closureRequirementBody"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "profileRequirementArtifact": {
+      "type": "object",
+      "required": [
+        "artifact_kind",
+        "binding",
+        "profile_edition",
+        "vocabulary_dependencies",
+        "requirements"
+      ],
+      "properties": {
+        "artifact_kind": {"const": "profile_requirement_artifact"},
+        "binding": {"$ref": "#/$defs/bindingHeader"},
+        "profile_edition": {"$ref": "#/$defs/profileEdition"},
+        "vocabulary_dependencies": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/vocabularyDependency"}
+        },
+        "requirements": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/requirementEnvelope"}
+        },
+        "artifact_metadata": {"$ref": "#/$defs/artifactMetadata"}
+      },
+      "additionalProperties": false
+    },
+    "sourceState": {
+      "type": "object",
+      "required": ["semantic_document_id"],
+      "properties": {
+        "semantic_document_id": {"$ref": "#/$defs/absoluteIri"},
+        "source_scope": {"$ref": "#/$defs/profileDefinedValue"},
+        "semantic_revision_id": {"$ref": "#/$defs/absoluteIri"},
+        "source_state_descriptor": {
+          "$ref": "#/$defs/profileDefinedValue"
+        }
+      },
+      "anyOf": [
+        {"required": ["semantic_revision_id"]},
+        {"required": ["source_state_descriptor"]}
+      ],
+      "additionalProperties": false
+    },
+    "selectionContext": {
+      "type": "object",
+      "required": ["selection_context_kind", "selection_descriptor"],
+      "properties": {
+        "selection_context_kind": {"$ref": "#/$defs/nonEmptyString"},
+        "selection_descriptor": {"$ref": "#/$defs/profileDefinedValue"},
+        "selection_input_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/nonEmptyString"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectionScope": {
+      "type": "object",
+      "required": ["scope_kind", "scope_descriptor"],
+      "properties": {
+        "scope_kind": {"$ref": "#/$defs/nonEmptyString"},
+        "scope_descriptor": {"$ref": "#/$defs/profileDefinedValue"},
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "additionalProperties": false
+    },
+    "carriedContent": {
+      "type": "object",
+      "properties": {
+        "revision": {
+          "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/revision"
+        },
+        "entities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/entity"
+          }
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/source"
+          }
+        },
+        "bindings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/binding"
+          }
+        },
+        "assertions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/assertion"
+          }
+        },
+        "tombstones": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/tombstone"
+          }
+        },
+        "history": {
+          "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/history"
+        }
+      },
+      "additionalProperties": false
+    },
+    "boundDescriptor": {
+      "type": "object",
+      "required": [
+        "bound_dimension",
+        "bound_rule",
+        "limit_value",
+        "bound_reached"
+      ],
+      "properties": {
+        "descriptor_id": {"$ref": "#/$defs/nonEmptyString"},
+        "bound_dimension": {"$ref": "#/$defs/nonEmptyString"},
+        "bound_rule": {"$ref": "#/$defs/nonEmptyString"},
+        "limit_value": {"$ref": "#/$defs/profileDefinedValue"},
+        "bound_reached": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "truncationDescriptor": {
+      "type": "object",
+      "required": ["truncation_established", "affected_scope"],
+      "properties": {
+        "truncation_established": {"const": true},
+        "affected_scope": {"$ref": "#/$defs/profileDefinedValue"},
+        "bound_reference": {
+          "$ref": "#/$defs/boundednessDescriptorReference"
+        },
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "additionalProperties": false
+    },
+    "omissionDescriptor": {
+      "type": "object",
+      "required": ["omission_category"],
+      "properties": {
+        "descriptor_id": {"$ref": "#/$defs/nonEmptyString"},
+        "omitted_target": {"$ref": "#/$defs/absoluteIri"},
+        "omitted_category": {"$ref": "#/$defs/nonEmptyString"},
+        "omitted_scope": {"$ref": "#/$defs/profileDefinedValue"},
+        "omission_category": {"$ref": "#/$defs/nonEmptyString"},
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"},
+        "dependency_continuation_reference": {
+          "$ref": "#/$defs/dependencyContinuationDescriptorReference"
+        }
+      },
+      "anyOf": [
+        {"required": ["omitted_target"]},
+        {"required": ["omitted_category"]},
+        {"required": ["omitted_scope"]}
+      ],
+      "additionalProperties": false
+    },
+    "projectionContinuationDescriptor": {
+      "type": "object",
+      "required": ["continuation_scope", "continuation_descriptor"],
+      "properties": {
+        "descriptor_id": {"$ref": "#/$defs/nonEmptyString"},
+        "continuation_scope": {"$ref": "#/$defs/profileDefinedValue"},
+        "continuation_descriptor": {
+          "$ref": "#/$defs/profileDefinedValue"
+        },
+        "source_state_reference": {"$ref": "#/$defs/sourceState"},
+        "profile_edition_reference": {"$ref": "#/$defs/profileEdition"}
+      },
+      "additionalProperties": false
+    },
+    "dependencyContinuationDescriptor": {
+      "type": "object",
+      "required": ["dependency_target", "dependency_descriptor"],
+      "properties": {
+        "descriptor_id": {"$ref": "#/$defs/nonEmptyString"},
+        "dependency_target": {"$ref": "#/$defs/absoluteIri"},
+        "dependency_descriptor": {
+          "$ref": "#/$defs/profileDefinedValue"
+        },
+        "reference_availability_reference": {
+          "$ref": "#/$defs/referenceAvailabilityDescriptorReference"
+        },
+        "omission_reference": {
+          "$ref": "#/$defs/omissionDescriptorReference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "materialContextDescriptor": {
+      "type": "object",
+      "required": ["context_target", "preservation_state"],
+      "properties": {
+        "descriptor_id": {"$ref": "#/$defs/nonEmptyString"},
+        "context_target": {"$ref": "#/$defs/profileDefinedValue"},
+        "preservation_state": {
+          "enum": [
+            "carried",
+            "exact_reference_sufficient",
+            "materialization_required",
+            "omitted",
+            "dependency_continuation"
+          ]
+        },
+        "carried_record_reference": {"$ref": "#/$defs/absoluteIri"},
+        "omission_reference": {
+          "$ref": "#/$defs/omissionDescriptorReference"
+        },
+        "dependency_continuation_reference": {
+          "$ref": "#/$defs/dependencyContinuationDescriptorReference"
+        },
+        "requirement_reference": {"$ref": "#/$defs/nonEmptyString"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"preservation_state": {"const": "carried"}},
+            "required": ["preservation_state"]
+          },
+          "then": {"required": ["carried_record_reference"]}
+        },
+        {
+          "if": {
+            "properties": {"preservation_state": {"const": "omitted"}},
+            "required": ["preservation_state"]
+          },
+          "then": {"required": ["omission_reference"]}
+        },
+        {
+          "if": {
+            "properties": {
+              "preservation_state": {"const": "dependency_continuation"}
+            },
+            "required": ["preservation_state"]
+          },
+          "then": {"required": ["dependency_continuation_reference"]}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "referenceAvailabilityDescriptor": {
+      "type": "object",
+      "required": ["reference_target", "availability_state"],
+      "properties": {
+        "descriptor_id": {"$ref": "#/$defs/nonEmptyString"},
+        "reference_target": {"$ref": "#/$defs/absoluteIri"},
+        "availability_state": {
+          "enum": ["carried", "external", "unassessed"]
+        },
+        "primary_descriptor_reference": {
+          "$ref": "#/$defs/primaryDescriptorReference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "projectionArtifact": {
+      "type": "object",
+      "required": [
+        "artifact_kind",
+        "binding",
+        "profile_edition",
+        "source_state",
+        "selection_context",
+        "projection_scope",
+        "projection_completeness",
+        "carried_content",
+        "reference_availability"
+      ],
+      "properties": {
+        "artifact_kind": {"const": "projection_artifact"},
+        "binding": {"$ref": "#/$defs/bindingHeader"},
+        "profile_edition": {"$ref": "#/$defs/profileEdition"},
+        "source_state": {"$ref": "#/$defs/sourceState"},
+        "selection_context": {"$ref": "#/$defs/selectionContext"},
+        "projection_scope": {"$ref": "#/$defs/projectionScope"},
+        "projection_completeness": {
+          "enum": ["complete", "partial", "unknown"]
+        },
+        "carried_content": {"$ref": "#/$defs/carriedContent"},
+        "namespaces": {
+          "$ref": "../../../../schema/v0.1/geesno-semantic.schema.json#/$defs/namespaces"
+        },
+        "reference_availability": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/referenceAvailabilityDescriptor"}
+        },
+        "projection_artifact_id": {"$ref": "#/$defs/absoluteIri"},
+        "boundedness": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/boundDescriptor"}
+        },
+        "truncation": {"$ref": "#/$defs/truncationDescriptor"},
+        "omissions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/omissionDescriptor"}
+        },
+        "projection_continuations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/projectionContinuationDescriptor"
+          }
+        },
+        "dependency_continuations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/dependencyContinuationDescriptor"
+          }
+        },
+        "material_context": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/materialContextDescriptor"}
+        },
+        "profile_artifact_reference": {"$ref": "#/$defs/nonEmptyString"},
+        "artifact_metadata": {"$ref": "#/$defs/artifactMetadata"}
+      },
+      "allOf": [
+        {
+          "if": {"required": ["truncation"]},
+          "then": {
+            "properties": {
+              "projection_completeness": {"const": "partial"}
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

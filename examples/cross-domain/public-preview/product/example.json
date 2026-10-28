@@ -1,0 +1,132 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:76000000-0000-4000-8000-000000000001",
+  "scope": {
+    "completeness": "unknown"
+  },
+  "namespaces": {
+    "catalog": "https://example.invalid/geesno-learning/product/",
+    "learn-ext": "https://example.invalid/geesno-learning/extension/"
+  },
+  "sources": [
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000002"
+    },
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000003"
+    }
+  ],
+  "entities": [
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000010",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000011",
+      "kind": "representation"
+    },
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000012",
+      "kind": "representation"
+    }
+  ],
+  "bindings": [
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000020",
+      "entity": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000002",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "catalog:item-key",
+        "value": "item-A17"
+      }
+    },
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000021",
+      "entity": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000012",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000003",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "catalog:item-key",
+        "value": "listing-82"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000030",
+      "kind": "concept_representation",
+      "subject": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "concept": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      }
+    },
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000031",
+      "kind": "concept_representation",
+      "subject": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000012",
+        "location": "in-document"
+      },
+      "concept": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      }
+    },
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000032",
+      "kind": "type",
+      "subject": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "type": "catalog:asset"
+    },
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000033",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "property": "catalog:display-name",
+      "value": "Portable sensor housing"
+    },
+    {
+      "id": "urn:uuid:76000000-0000-4000-8000-000000000034",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:76000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "property": "catalog:channels",
+      "value": {
+        "kind": "list",
+        "items": [
+          "maintenance",
+          "sales"
+        ]
+      }
+    }
+  ],
+  "extensions": {
+    "learn-ext:display-hint": {
+      "preferred_label": "Portable sensor housing",
+      "priority": 2
+    }
+  }
+}

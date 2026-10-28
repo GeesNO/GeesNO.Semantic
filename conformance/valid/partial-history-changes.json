@@ -1,0 +1,51 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000001c2",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "revision": {
+    "id": "urn:uuid:00000000-0000-4000-8000-0000000001c3"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000001c4",
+      "kind": "concept"
+    }
+  ],
+  "history": {
+    "completeness": "partial",
+    "changes": [
+      {
+        "revision": {
+          "target": "urn:uuid:00000000-0000-4000-8000-0000000001c3",
+          "location": "in-document"
+        },
+        "targets": [
+          {
+            "target": "urn:uuid:00000000-0000-4000-8000-0000000001c4",
+            "location": "in-document"
+          }
+        ],
+        "kind": "ex:observed"
+      },
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-0000000001c5",
+        "revision": {
+          "target": "urn:uuid:00000000-0000-4000-8000-0000000001c3",
+          "location": "in-document"
+        },
+        "targets": [
+          {
+            "target": "urn:uuid:00000000-0000-4000-8000-0000000001c4",
+            "location": "in-document"
+          }
+        ],
+        "kind": "ex:described"
+      }
+    ]
+  }
+}

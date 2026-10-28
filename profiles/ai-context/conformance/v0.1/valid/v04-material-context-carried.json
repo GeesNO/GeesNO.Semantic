@@ -1,0 +1,88 @@
+{
+  "artifact_kind": "projection_artifact",
+  "binding": {
+    "family": "https://geesno.com/binding/ai-context-json",
+    "version": "0.1.0"
+  },
+  "profile_edition": {
+    "profile_family": "https://geesno.com/profile/ai-context",
+    "profile_version": "0.1.0"
+  },
+  "source_state": {
+    "semantic_document_id": "urn:uuid:00000000-0000-4000-8000-00000000a000",
+    "source_state_descriptor": "fixture-state-r1"
+  },
+  "selection_context": {
+    "selection_context_kind": "fixture-explicit-records",
+    "selection_descriptor": {
+      "record_ids": ["urn:uuid:00000000-0000-4000-8000-00000000a101"]
+    }
+  },
+  "projection_scope": {
+    "scope_kind": "fixture-record-set",
+    "scope_descriptor": {
+      "record_ids": ["urn:uuid:00000000-0000-4000-8000-00000000a101"]
+    },
+    "requirement_reference": "projection-baseline"
+  },
+  "projection_completeness": "complete",
+  "carried_content": {
+    "entities": [
+      {
+        "id": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+        "kind": "concept",
+        "provenance": [
+          {
+            "id": "urn:uuid:00000000-0000-4000-8000-00000000a111",
+            "kind": "test:authored",
+            "details": "synthetic source"
+          }
+        ],
+        "confidence": [
+          {
+            "id": "urn:uuid:00000000-0000-4000-8000-00000000a112",
+            "score": {
+              "kind": "decimal",
+              "coefficient": "9",
+              "exponent": "-1"
+            },
+            "method": "test:deterministic"
+          }
+        ],
+        "reviews": [
+          {
+            "id": "urn:uuid:00000000-0000-4000-8000-00000000a113",
+            "disposition": "test:accepted"
+          }
+        ],
+        "validity": {
+          "kind": "test:interval",
+          "from": {
+            "kind": "date",
+            "value": "2026-09-29"
+          }
+        },
+        "extensions": {
+          "ext:opaque": {
+            "token": "alpha",
+            "nested": [1, true]
+          }
+        }
+      }
+    ]
+  },
+  "namespaces": {
+    "test": "https://example.invalid/terms/",
+    "ext": "https://example.invalid/extensions/"
+  },
+  "reference_availability": [],
+  "material_context": [
+    {
+      "descriptor_id": "material-entity-a101",
+      "context_target": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+      "preservation_state": "carried",
+      "carried_record_reference": "urn:uuid:00000000-0000-4000-8000-00000000a101",
+      "requirement_reference": "material-context-carry"
+    }
+  ]
+}

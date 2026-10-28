@@ -1,0 +1,35 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000005ad",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000005ae",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000005af",
+      "kind": "representation"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000005b0",
+      "kind": "relation",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000005ae",
+        "location": "in-document"
+      },
+      "predicate": "ex:represented-by",
+      "object": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000005af",
+        "location": "out-of-document"
+      }
+    }
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeesNO.Semantic JSON Schema 0.1",
+  "description": "Normative structural schema for the S2 0.1 instance contract. Full bare-core conformance also requires deterministic Layers 0, 1 and 3.",
+  "x-geesno-status": "s2-complete",
+  "type": "object",
+  "required": ["spec_version", "id", "scope"],
+  "properties": {
+    "spec_version": {"const": "0.1.0"},
+    "id": {"$ref": "#/$defs/identifier"},
+    "scope": {"$ref": "#/$defs/scope"},
+    "namespaces": {"$ref": "#/$defs/namespaces"},
+    "profiles": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/profileReference"}},
+    "revision": {"$ref": "#/$defs/revision"},
+    "entities": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/entity"}},
+    "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source"}},
+    "bindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/binding"}},
+    "assertions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/assertion"}},
+    "tombstones": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/tombstone"}},
+    "history": {"$ref": "#/$defs/history"},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "minLength": 1,
+      "oneOf": [
+        {"pattern": "^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"},
+        {"allOf": [
+          {"pattern": "^[A-Za-z][A-Za-z0-9+.-]*:"},
+          {"not": {"pattern": "^[Uu][Rr][Nn]:[Uu][Uu][Ii][Dd]:"}}
+        ]}
+      ]
+    },
+    "qualifiedTerm": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9._-]*:[A-Za-z0-9_][A-Za-z0-9._-]*$"},
+    "reference": {
+      "type": "object",
+      "required": ["target", "location"],
+      "properties": {
+        "target": {"$ref": "#/$defs/identifier"},
+        "location": {"enum": ["in-document", "out-of-document"]}
+      },
+      "additionalProperties": false
+    },
+    "profileReference": {
+      "type": "object",
+      "required": ["profile", "version"],
+      "properties": {
+        "profile": {"$ref": "#/$defs/identifier"},
+        "version": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "namespaces": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^[A-Za-z][A-Za-z0-9._-]*$"},
+      "additionalProperties": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:"}
+    },
+    "extensions": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"$ref": "#/$defs/qualifiedTerm"},
+      "additionalProperties": true
+    },
+    "condition": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"const": "condition"},
+        "value": {"enum": ["unknown", "not_applicable", "redacted"]}
+      },
+      "additionalProperties": false
+    },
+    "integerValue": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"const": "integer"},
+        "value": {"type": "string", "pattern": "^(?:0|-?[1-9][0-9]*)$"},
+        "source_lexical": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "decimalValue": {
+      "type": "object",
+      "required": ["kind", "coefficient", "exponent"],
+      "properties": {
+        "kind": {"const": "decimal"},
+        "coefficient": {"type": "string", "pattern": "^(?:0|-?(?:[1-9]|[1-9][0-9]*[1-9]))$"},
+        "exponent": {"type": "string", "pattern": "^(?:0|-?[1-9][0-9]*)$"},
+        "source_lexical": {"type": "string"}
+      },
+      "allOf": [{
+        "if": {"properties": {"coefficient": {"const": "0"}}, "required": ["coefficient"]},
+        "then": {"properties": {"exponent": {"const": "0"}}}
+      }],
+      "additionalProperties": false
+    },
+    "dateValue": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"const": "date"},
+        "value": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "source_lexical": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "dateTimeValue": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"const": "date_time"},
+        "value": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](?:\\.[0-9]*[1-9])?Z$"},
+        "source_lexical": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "referenceValue": {
+      "type": "object",
+      "required": ["kind", "reference"],
+      "properties": {
+        "kind": {"const": "reference"},
+        "reference": {"$ref": "#/$defs/reference"}
+      },
+      "additionalProperties": false
+    },
+    "quantityValue": {
+      "type": "object",
+      "required": ["kind", "magnitude", "unit"],
+      "properties": {
+        "kind": {"const": "quantity"},
+        "magnitude": {"$ref": "#/$defs/numericValue"},
+        "unit": {"$ref": "#/$defs/qualifiedTerm"}
+      },
+      "additionalProperties": false
+    },
+    "listValue": {
+      "type": "object",
+      "required": ["kind", "items"],
+      "properties": {
+        "kind": {"const": "list"},
+        "items": {"type": "array", "items": {"$ref": "#/$defs/valueOrCondition"}}
+      },
+      "additionalProperties": false
+    },
+    "setValue": {
+      "type": "object",
+      "required": ["kind", "items"],
+      "properties": {
+        "kind": {"const": "set"},
+        "items": {"type": "array", "items": {"$ref": "#/$defs/valueOrCondition"}}
+      },
+      "additionalProperties": false
+    },
+    "structuredValue": {
+      "type": "object",
+      "required": ["kind", "datatype", "members"],
+      "properties": {
+        "kind": {"const": "structured"},
+        "datatype": {"$ref": "#/$defs/qualifiedTerm"},
+        "members": {
+          "type": "object",
+          "propertyNames": {"$ref": "#/$defs/qualifiedTerm"},
+          "additionalProperties": {"$ref": "#/$defs/valueOrCondition"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "numericValue": {"oneOf": [{"$ref": "#/$defs/integerValue"}, {"$ref": "#/$defs/decimalValue"}]},
+    "value": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "boolean"},
+        {"$ref": "#/$defs/integerValue"},
+        {"$ref": "#/$defs/decimalValue"},
+        {"$ref": "#/$defs/dateValue"},
+        {"$ref": "#/$defs/dateTimeValue"},
+        {"$ref": "#/$defs/referenceValue"},
+        {"$ref": "#/$defs/quantityValue"},
+        {"$ref": "#/$defs/listValue"},
+        {"$ref": "#/$defs/setValue"},
+        {"$ref": "#/$defs/structuredValue"}
+      ]
+    },
+    "valueOrCondition": {"oneOf": [{"$ref": "#/$defs/value"}, {"$ref": "#/$defs/condition"}]},
+    "descriptor": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"$ref": "#/$defs/qualifiedTerm"},
+        "value": {"$ref": "#/$defs/value"}
+      },
+      "additionalProperties": false
+    },
+    "fingerprint": {
+      "type": "object",
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": {"$ref": "#/$defs/qualifiedTerm"},
+        "value": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "validity": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": {"$ref": "#/$defs/qualifiedTerm"},
+        "from": {"$ref": "#/$defs/value"},
+        "until": {"$ref": "#/$defs/value"}
+      },
+      "anyOf": [{"required": ["from"]}, {"required": ["until"]}],
+      "additionalProperties": false
+    },
+    "trustEnvelope": {
+      "type": "object",
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "provenance": {"$ref": "#/$defs/provenanceArray"},
+        "confidence": {"$ref": "#/$defs/confidenceArray"},
+        "reviews": {"$ref": "#/$defs/reviewArray"},
+        "supersedes": {"$ref": "#/$defs/referenceArray"},
+        "validity": {"$ref": "#/$defs/validity"},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["kind"],
+      "allOf": [
+        {"$ref": "#/$defs/trustEnvelope"},
+        {"properties": {
+          "kind": {"$ref": "#/$defs/qualifiedTerm"},
+          "sources": {"$ref": "#/$defs/referenceArray"},
+          "details": {"$ref": "#/$defs/value"}
+        }}
+      ],
+      "unevaluatedProperties": false
+    },
+    "confidence": {
+      "type": "object",
+      "required": ["score"],
+      "allOf": [
+        {"$ref": "#/$defs/trustEnvelope"},
+        {"properties": {
+          "score": {"$ref": "#/$defs/numericValue"},
+          "method": {"$ref": "#/$defs/qualifiedTerm"},
+          "details": {"$ref": "#/$defs/value"}
+        }}
+      ],
+      "unevaluatedProperties": false
+    },
+    "review": {
+      "type": "object",
+      "required": ["disposition"],
+      "allOf": [
+        {"$ref": "#/$defs/trustEnvelope"},
+        {"properties": {
+          "disposition": {"$ref": "#/$defs/qualifiedTerm"},
+          "details": {"$ref": "#/$defs/value"}
+        }}
+      ],
+      "unevaluatedProperties": false
+    },
+    "provenanceArray": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/provenance"}},
+    "confidenceArray": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/confidence"}},
+    "reviewArray": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/review"}},
+    "referenceArray": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/reference"}},
+    "recordEnvelope": {
+      "type": "object",
+      "properties": {
+        "provenance": {"$ref": "#/$defs/provenanceArray"},
+        "confidence": {"$ref": "#/$defs/confidenceArray"},
+        "reviews": {"$ref": "#/$defs/reviewArray"},
+        "supersedes": {"$ref": "#/$defs/referenceArray"},
+        "validity": {"$ref": "#/$defs/validity"},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "entity": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "allOf": [
+        {"$ref": "#/$defs/recordEnvelope"},
+        {"properties": {"id": {"$ref": "#/$defs/identifier"}, "kind": {"enum": ["concept", "representation"]}}}
+      ],
+      "unevaluatedProperties": false
+    },
+    "assertionEnvelope": {
+      "type": "object",
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "kind": {"enum": ["type", "property", "relation", "concept_representation"]},
+        "subject": {"$ref": "#/$defs/reference"},
+        "provenance": {"$ref": "#/$defs/provenanceArray"},
+        "confidence": {"$ref": "#/$defs/confidenceArray"},
+        "reviews": {"$ref": "#/$defs/reviewArray"},
+        "supersedes": {"$ref": "#/$defs/referenceArray"},
+        "validity": {"$ref": "#/$defs/validity"},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "required": ["id", "kind", "subject"],
+      "allOf": [
+        {"$ref": "#/$defs/assertionEnvelope"},
+        {"oneOf": [
+          {
+            "properties": {"kind": {"const": "type"}, "type": {"$ref": "#/$defs/qualifiedTerm"}},
+            "required": ["type"]
+          },
+          {
+            "properties": {
+              "kind": {"const": "property"},
+              "property": {"$ref": "#/$defs/qualifiedTerm"},
+              "value": {"$ref": "#/$defs/value"},
+              "condition": {"$ref": "#/$defs/condition"}
+            },
+            "required": ["property"],
+            "oneOf": [{"required": ["value"]}, {"required": ["condition"]}]
+          },
+          {
+            "properties": {"kind": {"const": "relation"}, "predicate": {"$ref": "#/$defs/qualifiedTerm"}, "object": {"$ref": "#/$defs/reference"}},
+            "required": ["predicate", "object"]
+          },
+          {
+            "properties": {"kind": {"const": "concept_representation"}, "concept": {"$ref": "#/$defs/reference"}},
+            "required": ["concept"]
+          }
+        ]}
+      ],
+      "unevaluatedProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["id"],
+      "allOf": [
+        {"$ref": "#/$defs/recordEnvelope"},
+        {"properties": {
+          "id": {"$ref": "#/$defs/identifier"},
+          "locations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/descriptor"}},
+          "revision": {"$ref": "#/$defs/descriptor"},
+          "fingerprints": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fingerprint"}}
+        }}
+      ],
+      "unevaluatedProperties": false
+    },
+    "binding": {
+      "type": "object",
+      "required": ["id", "entity", "source"],
+      "allOf": [
+        {"$ref": "#/$defs/recordEnvelope"},
+        {"properties": {
+          "id": {"$ref": "#/$defs/identifier"},
+          "entity": {"$ref": "#/$defs/reference"},
+          "source": {"$ref": "#/$defs/reference"},
+          "locator": {"$ref": "#/$defs/descriptor"},
+          "method": {"$ref": "#/$defs/qualifiedTerm"}
+        }}
+      ],
+      "unevaluatedProperties": false
+    },
+    "revision": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "parents": {"$ref": "#/$defs/referenceArray"},
+        "provenance": {"$ref": "#/$defs/provenanceArray"},
+        "confidence": {"$ref": "#/$defs/confidenceArray"},
+        "reviews": {"$ref": "#/$defs/reviewArray"},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      },
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "required": ["completeness"],
+      "properties": {
+        "completeness": {"enum": ["complete", "partial", "unknown"]},
+        "definition": {"$ref": "#/$defs/descriptor"}
+      },
+      "if": {"properties": {"completeness": {"const": "complete"}}, "required": ["completeness"]},
+      "then": {"required": ["definition"]},
+      "additionalProperties": false
+    },
+    "tombstone": {
+      "type": "object",
+      "required": ["id", "target", "target_category"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "target": {"$ref": "#/$defs/reference"},
+        "target_category": {"enum": ["entity", "assertion", "source", "binding", "revision", "change", "provenance", "confidence", "review"]},
+        "reason": {"$ref": "#/$defs/qualifiedTerm"},
+        "provenance": {"$ref": "#/$defs/provenanceArray"},
+        "confidence": {"$ref": "#/$defs/confidenceArray"},
+        "reviews": {"$ref": "#/$defs/reviewArray"},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      },
+      "additionalProperties": false
+    },
+    "change": {
+      "type": "object",
+      "required": ["revision", "targets", "kind"],
+      "allOf": [
+        {"$ref": "#/$defs/trustEnvelope"},
+        {"properties": {
+          "revision": {"$ref": "#/$defs/reference"},
+          "targets": {"$ref": "#/$defs/referenceArray"},
+          "kind": {"$ref": "#/$defs/qualifiedTerm"},
+          "details": {"$ref": "#/$defs/value"}
+        }}
+      ],
+      "unevaluatedProperties": false
+    },
+    "historicalMembership": {
+      "type": "object",
+      "required": ["revision", "target"],
+      "properties": {
+        "revision": {"$ref": "#/$defs/reference"},
+        "target": {"$ref": "#/$defs/reference"}
+      },
+      "additionalProperties": false
+    },
+    "history": {
+      "type": "object",
+      "required": ["completeness"],
+      "properties": {
+        "completeness": {"enum": ["complete", "partial", "unknown"]},
+        "definition": {"$ref": "#/$defs/descriptor"},
+        "revisions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/revision"}},
+        "changes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/change"}},
+        "records": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/historicalMembership"}}
+      },
+      "allOf": [{
+        "if": {"properties": {"completeness": {"const": "complete"}}, "required": ["completeness"]},
+        "then": {"required": ["definition"]},
+        "else": {"anyOf": [
+          {"required": ["definition"]},
+          {"required": ["revisions"]},
+          {"required": ["changes"]},
+          {"required": ["records"]}
+        ]}
+      }],
+      "additionalProperties": false
+    }
+  }
+}

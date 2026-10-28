@@ -1,0 +1,89 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:73000000-0000-4000-8000-000000000001",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "table": "https://example.invalid/geesno-learning/tabular/",
+    "biz": "https://example.invalid/geesno-learning/business/"
+  },
+  "sources": [
+    {
+      "id": "urn:uuid:73000000-0000-4000-8000-000000000002"
+    }
+  ],
+  "entities": [
+    {
+      "id": "urn:uuid:73000000-0000-4000-8000-000000000010",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:73000000-0000-4000-8000-000000000011",
+      "kind": "representation"
+    }
+  ],
+  "bindings": [
+    {
+      "id": "urn:uuid:73000000-0000-4000-8000-000000000020",
+      "entity": {
+        "target": "urn:uuid:73000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:73000000-0000-4000-8000-000000000002",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "table:record-key",
+        "value": "account-17"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:73000000-0000-4000-8000-000000000030",
+      "kind": "concept_representation",
+      "subject": {
+        "target": "urn:uuid:73000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "concept": {
+        "target": "urn:uuid:73000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      }
+    },
+    {
+      "id": "urn:uuid:73000000-0000-4000-8000-000000000031",
+      "kind": "type",
+      "subject": {
+        "target": "urn:uuid:73000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "type": "biz:account"
+    },
+    {
+      "id": "urn:uuid:73000000-0000-4000-8000-000000000032",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:73000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "property": "biz:active",
+      "value": true
+    },
+    {
+      "id": "urn:uuid:73000000-0000-4000-8000-000000000033",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:73000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "property": "biz:sequence-number",
+      "value": {
+        "kind": "integer",
+        "value": "17"
+      }
+    }
+  ]
+}

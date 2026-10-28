@@ -1,0 +1,100 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:77000000-0000-4000-8000-000000000001",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "science": "https://example.invalid/geesno-learning/science/",
+    "unit": "https://example.invalid/geesno-learning/unit/",
+    "prov": "https://example.invalid/geesno-learning/provenance/"
+  },
+  "sources": [
+    {
+      "id": "urn:uuid:77000000-0000-4000-8000-000000000002"
+    }
+  ],
+  "entities": [
+    {
+      "id": "urn:uuid:77000000-0000-4000-8000-000000000010",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:77000000-0000-4000-8000-000000000011",
+      "kind": "representation"
+    }
+  ],
+  "bindings": [
+    {
+      "id": "urn:uuid:77000000-0000-4000-8000-000000000020",
+      "entity": {
+        "target": "urn:uuid:77000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:77000000-0000-4000-8000-000000000002",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "science:observation-key",
+        "value": "observation-007"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:77000000-0000-4000-8000-000000000030",
+      "kind": "concept_representation",
+      "subject": {
+        "target": "urn:uuid:77000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "concept": {
+        "target": "urn:uuid:77000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      }
+    },
+    {
+      "id": "urn:uuid:77000000-0000-4000-8000-000000000031",
+      "kind": "type",
+      "subject": {
+        "target": "urn:uuid:77000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "type": "science:temperature-observation"
+    },
+    {
+      "id": "urn:uuid:77000000-0000-4000-8000-000000000032",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:77000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "property": "science:measured-temperature",
+      "value": {
+        "kind": "quantity",
+        "magnitude": {
+          "kind": "decimal",
+          "coefficient": "29315",
+          "exponent": "-2",
+          "source_lexical": "293.150"
+        },
+        "unit": "unit:kelvin"
+      },
+      "provenance": [
+        {
+          "kind": "prov:instrument-observation"
+        }
+      ],
+      "confidence": [
+        {
+          "score": {
+            "kind": "decimal",
+            "coefficient": "98",
+            "exponent": "-2"
+          }
+        }
+      ]
+    }
+  ]
+}

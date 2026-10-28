@@ -1,0 +1,32 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000005b4",
+  "scope": {
+    "completeness": "partial"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000005b5",
+      "kind": "concept",
+      "provenance": [
+        {
+          "kind": "ex:derived",
+          "sources": [
+            {
+              "target": "urn:uuid:00000000-0000-4000-8000-0000000005b5",
+              "location": "in-document"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000005b6"
+    }
+  ],
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  }
+}

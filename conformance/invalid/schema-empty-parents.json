@@ -1,0 +1,11 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000044c",
+  "scope": {
+    "completeness": "partial"
+  },
+  "revision": {
+    "id": "urn:uuid:00000000-0000-4000-8000-00000000044d",
+    "parents": []
+  }
+}

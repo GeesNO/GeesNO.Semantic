@@ -1,0 +1,88 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:74000000-0000-4000-8000-000000000001",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "doc": "https://example.invalid/geesno-learning/document/",
+    "spec": "https://example.invalid/geesno-learning/specification/",
+    "prov": "https://example.invalid/geesno-learning/provenance/",
+    "review": "https://example.invalid/geesno-learning/review/"
+  },
+  "sources": [
+    {
+      "id": "urn:uuid:74000000-0000-4000-8000-000000000002"
+    }
+  ],
+  "entities": [
+    {
+      "id": "urn:uuid:74000000-0000-4000-8000-000000000010",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:74000000-0000-4000-8000-000000000011",
+      "kind": "representation"
+    }
+  ],
+  "bindings": [
+    {
+      "id": "urn:uuid:74000000-0000-4000-8000-000000000020",
+      "entity": {
+        "target": "urn:uuid:74000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:74000000-0000-4000-8000-000000000002",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "doc:text-region",
+        "value": "section-4.2"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:74000000-0000-4000-8000-000000000030",
+      "kind": "concept_representation",
+      "subject": {
+        "target": "urn:uuid:74000000-0000-4000-8000-000000000011",
+        "location": "in-document"
+      },
+      "concept": {
+        "target": "urn:uuid:74000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "provenance": [
+        {
+          "kind": "prov:human-authored"
+        }
+      ],
+      "reviews": [
+        {
+          "disposition": "review:accepted"
+        }
+      ]
+    },
+    {
+      "id": "urn:uuid:74000000-0000-4000-8000-000000000031",
+      "kind": "type",
+      "subject": {
+        "target": "urn:uuid:74000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "type": "spec:requirement"
+    },
+    {
+      "id": "urn:uuid:74000000-0000-4000-8000-000000000032",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:74000000-0000-4000-8000-000000000010",
+        "location": "in-document"
+      },
+      "property": "spec:statement",
+      "value": "The enclosure shall remain closed during measurement."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-000000000500",
+  "scope": {"completeness": "unknown"},
+  "namespaces": {"ext": "https://example.invalid/extensions/"},
+  "extensions": {
+    "ext:opaque": {"null": null, "numbers": [1, 1.0, 1e0, 1E+0, -0, 9007199254740993, 1e100000], "nested": {"array": []}}
+  }
+}

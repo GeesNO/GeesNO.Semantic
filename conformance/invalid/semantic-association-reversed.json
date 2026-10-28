@@ -1,0 +1,31 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000004ce",
+  "scope": {
+    "completeness": "partial"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000004cf",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000004d0",
+      "kind": "representation"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000004d1",
+      "kind": "concept_representation",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000004cf",
+        "location": "in-document"
+      },
+      "concept": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000004d0",
+        "location": "in-document"
+      }
+    }
+  ]
+}

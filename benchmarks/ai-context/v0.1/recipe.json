@@ -1,0 +1,49 @@
+{
+  "benchmark": {
+    "id": "s4-ai-context-exit",
+    "version": "0.1"
+  },
+  "generator_recipe": {
+    "id": "s4-ai-context-benchmark",
+    "version": "0.1"
+  },
+  "source": {
+    "entity_count": 5000,
+    "assertion_count": 5000,
+    "source_count": 50,
+    "binding_count": 50,
+    "semantic_document_id": "urn:uuid:90000000-0000-4000-8000-000000000000",
+    "source_state_descriptor": "s4-ai-context-benchmark-source-r1"
+  },
+  "materiality": {
+    "material_entity_indices": [0, 10, 20, 30, 40, 500, 1500, 2500, 3500, 4500],
+    "material_source_binding_entity_indices": [0, 10, 20, 30, 40]
+  },
+  "complete_narrow_projection": {
+    "entity_indices": [0],
+    "material_source_binding_entity_indices": [0]
+  },
+  "bounded_partial_projection": {
+    "scope_entity_count": 1000,
+    "carried_entity_count": 250,
+    "material_source_binding_entity_indices": [0, 10, 20, 30, 40],
+    "omission_entity_index": 500,
+    "bound_dimension": "carried-semantic-record-count",
+    "bound_rule": "benchmark-maximum-carried-records",
+    "continuation_recipe": "remaining-records-in-declared-benchmark-scope"
+  },
+  "measurement_serialization": {
+    "id": "s4-benchmark-json-measurement",
+    "version": "0.1",
+    "encoding": "UTF-8",
+    "ensure_ascii": false,
+    "sort_keys": true,
+    "separators": [",", ":"],
+    "trailing_newline": true
+  },
+  "thresholds": {
+    "source_minimum_addressable_records": 10000,
+    "bounded_record_ratio_percent_max": 10,
+    "bounded_byte_ratio_percent_max": 25
+  }
+}

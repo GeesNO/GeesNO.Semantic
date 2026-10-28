@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.venv/
+venv/
+env/
+.cache/
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Retired historical input. Do not reintroduce it as project material.
+SCC-CAD-Adapter-1.0.zip

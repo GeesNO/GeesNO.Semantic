@@ -1,0 +1,22 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000005aa",
+  "scope": {
+    "completeness": "partial"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000005ab",
+      "kind": "concept"
+    }
+  ],
+  "revision": {
+    "id": "urn:uuid:00000000-0000-4000-8000-0000000005ac",
+    "parents": [
+      {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000005ab",
+        "location": "out-of-document"
+      }
+    ]
+  }
+}

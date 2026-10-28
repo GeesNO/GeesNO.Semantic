@@ -1,0 +1,38 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-000000000208",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-000000000209",
+      "kind": "concept"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000020a",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-000000000209",
+        "location": "in-document"
+      },
+      "property": "ex:name",
+      "value": "same"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000020b",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-000000000209",
+        "location": "in-document"
+      },
+      "property": "ex:name",
+      "value": "same"
+    }
+  ]
+}

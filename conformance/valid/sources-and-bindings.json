@@ -1,0 +1,118 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-0000000000c8",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "ex": "https://example.invalid/terms/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000c9",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000ca",
+      "kind": "representation"
+    }
+  ],
+  "sources": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000d2"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000d3",
+      "locations": [
+        {
+          "kind": "ex:location",
+          "value": "shared"
+        }
+      ],
+      "revision": {
+        "kind": "ex:edition",
+        "value": "r1"
+      },
+      "fingerprints": [
+        {
+          "algorithm": "ex:digest",
+          "value": "abc"
+        }
+      ]
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000d4",
+      "locations": [
+        {
+          "kind": "ex:location",
+          "value": "shared"
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000dc",
+      "entity": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000000c9",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000000d2",
+        "location": "in-document"
+      }
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000dd",
+      "entity": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000000ca",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000000d3",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "ex:unknown_locator",
+        "value": {
+          "kind": "structured",
+          "datatype": "ex:key",
+          "members": {
+            "ex:part": "A"
+          }
+        }
+      },
+      "method": "ex:mapped"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000de",
+      "entity": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000000ca",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000000d3",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "ex:unknown_locator",
+        "value": "same"
+      }
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-0000000000df",
+      "entity": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000000ca",
+        "location": "in-document"
+      },
+      "source": {
+        "target": "urn:uuid:00000000-0000-4000-8000-0000000000d3",
+        "location": "in-document"
+      },
+      "locator": {
+        "kind": "ex:unknown_locator",
+        "value": "same"
+      }
+    }
+  ]
+}

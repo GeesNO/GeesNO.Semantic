@@ -1,0 +1,42 @@
+{
+  "spec_version": "0.1.0",
+  "id": "urn:uuid:00000000-0000-4000-8000-00000000b000",
+  "scope": {
+    "completeness": "partial"
+  },
+  "namespaces": {
+    "demo": "https://example.invalid/illustrative/asset/"
+  },
+  "entities": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000b101",
+      "kind": "concept"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000b102",
+      "kind": "concept"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000b201",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000b101",
+        "location": "in-document"
+      },
+      "property": "demo:label",
+      "value": "Calibration target"
+    },
+    {
+      "id": "urn:uuid:00000000-0000-4000-8000-00000000b202",
+      "kind": "property",
+      "subject": {
+        "target": "urn:uuid:00000000-0000-4000-8000-00000000b102",
+        "location": "in-document"
+      },
+      "property": "demo:label",
+      "value": "Storage case"
+    }
+  ]
+}
